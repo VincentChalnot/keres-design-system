@@ -1,0 +1,7 @@
+# Cloudflare Workers (static assets) deployment of the style guide.
+# Build first: npm ci && npm run build   (generates styleguide/keres.css)
+name = "keres-design-system"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./styleguide"
