@@ -68,17 +68,18 @@
   --k-radius-game: 6px;         /* the game screen uses squarer corners */
 
   /* ── Typography ────────────────────────────────────────────────────── */
-  --k-font-sans: "Inter", "Roboto", "Helvetica Neue", Arial, sans-serif;
-  --k-font-display: "Carolingia", serif;   /* logo, hero, big numbers */
+  --k-font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;  /* body + UI: screen-optimised serif */
+  --k-font-sans: var(--k-font-body);       /* legacy alias */
+  --k-font-display: "Carolingia", serif;   /* the LOGO only — always uppercase */
   --k-font-title: "RomanSerif", serif;     /* headings */
   --k-font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
   /* ── Shape & elevation ─────────────────────────────────────────────── */
   /* Every bordered shape is bevelled (corner-shape: bevel); these are the
      cut sizes. Browsers without corner-shape fall back to small round corners. */
-  --k-radius-sm: 0.25rem;
-  --k-radius-md: 0.5rem;
-  --k-radius-lg: 0.875rem;
+  --k-radius-sm: 0.125rem;      /* badges, small buttons, toggles: barely visible cut */
+  --k-radius-md: 0.3125rem;     /* buttons, inputs, alerts */
+  --k-radius-lg: 0.5rem;        /* panels, modals */
   --k-shadow-raised: 0 8px 24px rgb(0 0 0 / 0.6);
   --k-shadow-modal: 0 0 0 1px rgb(0 0 0 / 0.7), 0 0 40px 6px rgb(0 0 0 / 0.65), 0 28px 70px rgb(0 0 0 / 0.7), 0 0 90px rgb(var(--k-primary) / 0.07);
   --k-shadow-cta: 1px 1px 12px #000;

@@ -6,7 +6,7 @@
   .hero { @apply flex flex-col items-center text-center mb-8; }
   .hero .btn { @apply shadow-cta; }
   .hero__content { @apply max-w-hero px-8; }
-  .hero__baseline { @apply font-title text-2xl mt-0 mb-5; text-shadow: -1px 1px 4px #0a0a0a; }
+  .hero__baseline { @apply font-title text-2xl mt-0 mb-5; }
   .hero__img { @apply -z-10 pointer-events-none flex items-center; }
   .hero__img img { @apply block w-full max-w-[1900px] min-h-[800px] object-cover; margin: -130px 0 -200px; }
 
@@ -68,7 +68,7 @@
   /* ── Error pages (403 / 404 / 500 …) ─────────────────────────────────── */
   .error-page { @apply flex min-h-[60vh] items-center justify-center text-center; }
   .error-page__content { @apply max-w-[40ch]; }
-  .error-page__code { @apply font-display text-[5rem] leading-none text-primary mb-[0.2em]; }
+  .error-page__code { @apply font-title text-[5rem] leading-none text-primary mb-[0.2em]; }
   .error-page__message { @apply text-soft; }
 
   /* ── Prose (markdown legal pages): extends @tailwindcss/typography `prose` ── */

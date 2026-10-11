@@ -16,7 +16,7 @@
   .section--tight { @apply py-4; }
 
   .card { @apply edged mb-4 rounded-lg bevel border bg-surface p-5 text-fg shadow-raised; }
-  .card--flush { @apply p-0 overflow-hidden; }
+  .card--flush { @apply p-0; overflow: clip; overflow-clip-margin: 1px; }
   .card--interactive { @apply transition-colors hover:[--edge-hi:var(--k-primary-hi)] hover:[--edge-lo:var(--k-primary-lo)]; }
   .card__title { @apply font-title text-xl mb-3 text-fg; }
   .card__title--sm { @apply text-base; }
@@ -27,7 +27,7 @@
 
   .stat { @apply text-center; }
   .stat__label { @apply eyebrow mb-0; }
-  .stat__value { @apply font-display text-4xl leading-tight text-fg mb-0; }
+  .stat__value { @apply font-title text-4xl leading-tight text-fg mb-0; }
   .stat__value--warning { @apply text-warning; }
   .stat-row { @apply grid grid-cols-3 gap-4; }
 
@@ -41,7 +41,7 @@
     @apply bg-surface-hover text-fg border;
   }
   .tag--sm { @apply h-5 px-2 text-[0.7rem]; }
-  .tag--lg { @apply h-8 px-3.5 text-sm; }
+  .tag--lg { @apply h-8 px-3.5 text-sm rounded-md; }
   .tag--square { @apply rounded-sm; }
   .tag--primary { @apply bg-primary text-white; --edge-hi: var(--k-primary-hi); --edge-lo: var(--k-primary-lo); }
   .tag--secondary { @apply bg-secondary text-white; --edge-hi: var(--k-secondary-hi); --edge-lo: var(--k-secondary-lo); }
@@ -53,11 +53,11 @@
   .tag--info { @apply bg-info text-white; --edge-hi: 130 184 232; --edge-lo: 30 90 150; }
   .tag--warning { @apply bg-warning text-ink; --edge-hi: 255 205 120; --edge-lo: 170 105 15; }
   /* Soft = tinted background, readable on dark surfaces */
-  .tag--soft.tag--success { @apply bg-success/15 text-success border-success/30; }
-  .tag--soft.tag--danger { @apply bg-danger/15 text-danger-text border-danger/30; }
-  .tag--soft.tag--info { @apply bg-info/15 text-info border-info/30; }
-  .tag--soft.tag--warning { @apply bg-warning/15 text-warning border-warning/30; }
-  .tag--soft.tag--primary { @apply bg-primary/15 text-primary border-primary/30; }
-  .tag--soft.tag--secondary { @apply bg-secondary/20 text-turn-text border-secondary/40; }
+  .tag--soft.tag--success { @apply bg-success/15 text-success; --edge-hi: var(--k-success); --edge-lo: var(--k-success); --edge-opacity: 0.4; }
+  .tag--soft.tag--danger { @apply bg-danger/15 text-danger-text; --edge-hi: var(--k-danger); --edge-lo: var(--k-danger); --edge-opacity: 0.4; }
+  .tag--soft.tag--info { @apply bg-info/15 text-info; --edge-hi: var(--k-info); --edge-lo: var(--k-info); --edge-opacity: 0.4; }
+  .tag--soft.tag--warning { @apply bg-warning/15 text-warning; --edge-hi: var(--k-warning); --edge-lo: var(--k-warning); --edge-opacity: 0.4; }
+  .tag--soft.tag--primary { @apply bg-primary/15 text-primary; --edge-hi: var(--k-primary); --edge-lo: var(--k-primary); --edge-opacity: 0.4; }
+  .tag--soft.tag--secondary { @apply bg-secondary/20 text-turn-text; --edge-hi: var(--k-secondary); --edge-lo: var(--k-secondary); --edge-opacity: 0.4; }
   .tag-group { @apply flex flex-wrap items-center gap-1.5; }
 }

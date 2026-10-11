@@ -14,7 +14,7 @@
   .navbar__inner { @apply flex flex-wrap items-center justify-between min-h-[calc(var(--k-navbar-h)-1px)]; }
   .navbar__brand { @apply flex items-center justify-between w-full lg:w-auto min-h-[calc(var(--k-navbar-h)-1px)]; }
   .navbar__logo { @apply flex items-center gap-[0.7rem] text-fg hover:no-underline; }
-  .navbar__logo-text { @apply font-display text-[2.4rem] leading-none pt-1.5 text-fg; }
+  .navbar__logo-text { @apply font-display uppercase text-[2.4rem] leading-none pt-1.5 text-fg; }
 
   .navbar__burger {
     @apply relative w-12 h-12 -mr-3 lg:hidden bg-transparent border-0 cursor-pointer text-fg hover:text-primary;
@@ -48,7 +48,8 @@
   .navbar__icon { @apply inline-flex items-center justify-center w-6 h-6 text-[1.1rem] shrink-0; }
   .navbar__icon.is-mobile-only, .is-mobile-only { @apply lg:hidden; }
   /* Mobile: buttons become plain rows so they line up with links */
-  .navbar__menu .btn.navbar__link { @apply h-auto w-full justify-start rounded-none border-0 bg-transparent text-fg text-base px-4 py-3 hover:bg-transparent hover:text-primary lg:text-sm lg:w-auto lg:rounded-md lg:border lg:px-3.5 lg:py-1 lg:h-8 normal-case tracking-normal; min-width: 0; }
+  .navbar__menu .btn.navbar__link { @apply h-auto w-full justify-start rounded-none border-0 bg-transparent text-fg text-base px-4 py-3 hover:bg-transparent hover:text-primary lg:text-sm lg:w-auto lg:rounded-sm lg:border lg:px-3.5 lg:py-1 lg:h-8 normal-case tracking-normal; min-width: 0; }
+  .navbar__menu .btn.navbar__link::before { @apply max-lg:hidden; }
   .navbar__menu .btn.navbar__link.navbar__play { @apply text-primary lg:bg-primary lg:text-white lg:hover:text-white lg:hover:bg-primary-hover; }
   .navbar__menu .btn.navbar__link .icon { @apply mx-0; }
   .navbar__menu .btn.navbar__link.navbar__ghost { @apply lg:hover:text-fg; }
@@ -123,9 +124,9 @@
   .pagination__list { @apply order-last flex w-full flex-wrap items-center justify-center gap-1 list-none m-0 p-0 sm:order-none sm:w-auto sm:flex-1; }
   .pagination__list li { @apply m-0; }
   .pagination__link {
-    @apply inline-flex items-center justify-center min-w-9 h-9 px-2 rounded-md bevel edged border text-fg hover:border-primary hover:text-primary hover:no-underline;
+    @apply inline-flex items-center justify-center min-w-9 h-9 px-2 rounded-md bevel edged border text-fg hover:[--edge-hi:var(--k-primary-hi)] hover:[--edge-lo:var(--k-primary)] hover:text-primary hover:no-underline;
   }
-  .pagination__link.is-current { @apply bg-primary border-primary text-ink font-bold; }
+  .pagination__link.is-current { @apply bg-primary text-ink font-bold [--edge-hi:var(--k-primary-hi)] [--edge-lo:var(--k-primary-lo)]; }
   .pagination__ellipsis { @apply px-1 text-muted; }
 
   /* ── Footer ───────────────────────────────────────────────────────────── */

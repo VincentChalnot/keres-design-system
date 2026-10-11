@@ -99,7 +99,7 @@
     text-transform: uppercase;
     @apply absolute inset-0 flex items-center justify-center font-extrabold pointer-events-none;
     font-size: 8cqw; letter-spacing: 0.15em; margin-top: -1.6cqw;
-    color: rgb(255 255 255 / 0.55); text-shadow: 0 0 0.15em rgb(0 0 0 / 0.6);
+    color: rgb(255 255 255 / 0.55);
   }
 
   /* Board SVG colours, token-driven. Put `.board-svg` on the <svg> (or a wrapper). */
@@ -112,7 +112,7 @@
 
   /* Maker's mark under the board (wide arrangement only). */
   .game-board__brand {
-    @apply hidden items-center gap-2.5 h-7 mt-2 font-display text-2xl leading-none text-soft/75;
+    @apply hidden items-center gap-2.5 h-7 mt-2 font-title text-2xl leading-none text-soft/75;
     width: min(60%, 24rem);
   }
   .game-board__brand::before, .game-board__brand::after {
