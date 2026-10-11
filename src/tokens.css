@@ -29,10 +29,10 @@
   --k-ink: 22 18 8;             /* dark icons / text on bright fills #161208 */
 
   /* ── Brand ─────────────────────────────────────────────────────────── */
-  --k-primary: 205 163 66;      /* the Keres gold              #cda342 */
-  --k-primary-hover: 221 183 94;
-  --k-primary-hi: 238 208 130;  /* light catching the top / left edges */
-  --k-primary-lo: 140 104 30;   /* shade on the bottom / right edges  */
+  --k-primary: 196 147 74;      /* the Keres gold              #c4934a */
+  --k-primary-hover: 205 163 101;
+  --k-primary-hi: 219 188 143;  /* light catching the top / left edges */
+  --k-primary-lo: 138 101 45;   /* shade on the bottom / right edges  */
   --k-secondary: 24 122 126;    /* teal                        #187a7e */
   --k-secondary-hover: 34 148 150;
   --k-secondary-hi: 82 192 186;
