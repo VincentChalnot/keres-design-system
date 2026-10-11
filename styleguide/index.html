@@ -18,7 +18,9 @@
     .sg h2.sg-h2 { font-size: 2.25rem; margin: 0 0 .25rem; padding-top: 3rem; }
     .sg h3.sg-h3 { font-size: 1.4rem; margin: 2rem 0 .25rem; color: rgb(var(--k-primary)); }
     .sg-lede { color: rgb(var(--k-muted)); max-width: 70ch; font-size: 1rem; margin-bottom: 1rem; }
-    .sg-swatch { height: 4rem; border-radius: .5rem; border: 1px solid rgb(255 255 255 / .12); }
+    .sg-swatch { position: relative; height: 4rem; border-radius: .5rem; border: 1px solid rgb(255 255 255 / .12); cursor: pointer; }
+    .sg-swatch input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+    .sg-swatch:hover { border-color: rgb(255 255 255 / .45); }
     .sg-nav-static .navbar { position: static; }
   </style>
 </head>
@@ -694,6 +696,21 @@
 </div>
 
 <script>
+  // Live colour editing: every swatch gets a colour picker that rewrites its --k-* token on :root.
+  // Nothing is persisted — reload to reset.
+  const hex = t => '#' + t.trim().split(/\s+/).map(n => (+n).toString(16).padStart(2, '0')).join('');
+  document.querySelectorAll('.sg-swatch').forEach(sw => {
+    const cls = [...sw.classList].find(c => c.startsWith('bg-')); if (!cls) return;
+    const name = '--k-' + cls.slice(3), label = sw.parentElement.querySelector('.text-muted');
+    const input = document.createElement('input'); input.type = 'color'; input.title = name;
+    input.value = hex(getComputedStyle(document.documentElement).getPropertyValue(name));
+    input.addEventListener('input', () => {
+      const v = input.value, rgb = [1, 3, 5].map(i => parseInt(v.slice(i, i + 2), 16)).join(' ');
+      document.documentElement.style.setProperty(name, rgb);
+      if (label) label.textContent = label.textContent.replace(/^#[0-9a-f]{3,6}/i, v);
+    });
+    sw.appendChild(input);
+  });
   // Style-guide behaviour only. The apps ship their own TypeScript for these widgets;
   // the contract is the same: toggle `.is-active` (modal, lightbox, burger/menu) or `aria-*`/`hidden`.
   document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.open).classList.add('is-active')));
