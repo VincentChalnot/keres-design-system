@@ -60,7 +60,7 @@
   .lightbox-trigger:hover img { @apply opacity-85; }
   .lightbox { @apply hidden fixed inset-0 z-lightbox items-center justify-center p-4 bg-black/90; }
   .lightbox.is-active { @apply flex; }
-  .lightbox__img { @apply max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-modal animate-pop; }
+  .lightbox__img { @apply max-w-[90vw] max-h-[90vh] object-contain rounded-lg bevel shadow-modal animate-pop; }
   .lightbox__close {
     @apply fixed top-4 right-5 z-[9001] bg-transparent border-0 text-fg text-[2.5rem] leading-none cursor-pointer opacity-70 hover:opacity-100 transition-opacity;
   }

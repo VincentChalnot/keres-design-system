@@ -145,7 +145,7 @@
 
   /* ── Player card: avatar, name, rating, clock, material ───────────────── */
   .player-card {
-    @apply grid min-w-0 items-center rounded-game border bg-panel px-2.5 py-1.5 gap-x-3 transition-[border-color,box-shadow] duration-200;
+    @apply grid min-w-0 items-center rounded-game bevel border bg-panel px-2.5 py-1.5 gap-x-3 transition-[border-color,box-shadow] duration-200;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "identity clock" "material material";
     border-color: var(--k-game-border);
@@ -199,7 +199,7 @@
 
   .player-clock {
     grid-area: clock;
-    @apply flex items-center justify-center gap-[0.5em] min-w-[5.5em] px-[0.7em] py-[0.2em] rounded-game border bg-[#0b0a09] font-title text-[1.2rem] text-soft/70 tabular transition-colors duration-200;
+    @apply flex items-center justify-center gap-[0.5em] min-w-[5.5em] px-[0.7em] py-[0.2em] rounded-game bevel border bg-[#0b0a09] font-title text-[1.2rem] text-soft/70 tabular transition-colors duration-200;
     border-color: var(--k-game-border);
   }
   .player-clock[hidden] { display: none; }
@@ -221,10 +221,10 @@
   /* ── Status line + option badges ──────────────────────────────────────── */
   .game-info { grid-area: info; @apply flex min-w-0 flex-col justify-center gap-2; }
   .game-info__badges { @apply flex flex-wrap justify-center gap-1.5; }
-  .game-info__badges .tag { @apply rounded-game; }
+  .game-info__badges .tag { @apply rounded-game bevel; }
 
   /* Whose turn / waiting / final result. JS sets exactly one state class. */
-  .status-banner { @apply rounded-game border border-transparent px-[0.8em] py-[0.55em] text-center text-[0.95rem] transition-colors duration-200; }
+  .status-banner { @apply rounded-game bevel border border-transparent px-[0.8em] py-[0.55em] text-center text-[0.95rem] transition-colors duration-200; }
   .status-banner.is-muted { @apply bg-panel text-muted; border-color: var(--k-game-border); }
   .status-banner.is-your-turn { @apply border-turn bg-turn/15 font-bold text-turn-text; }
   .status-banner.is-won { @apply border-success bg-success font-bold text-[#0a2418]; }
@@ -238,10 +238,10 @@
   .game-panel__inner { display: contents; }
   @container game (min-width: 68rem) and (max-width: 93.99rem) {
     .game-panel { @apply relative block min-h-[30rem]; }
-    .game-panel__inner { @apply absolute inset-0 flex flex-col overflow-hidden rounded-game border bg-panel; border-color: var(--k-game-border); }
+    .game-panel__inner { @apply absolute inset-0 flex flex-col overflow-hidden rounded-game bevel border bg-panel; border-color: var(--k-game-border); }
   }
 
-  .game-moves { grid-area: moves; @apply flex min-h-0 flex-col overflow-hidden rounded-game border bg-panel; border-color: var(--k-game-border); }
+  .game-moves { grid-area: moves; @apply flex min-h-0 flex-col overflow-hidden rounded-game bevel border bg-panel; border-color: var(--k-game-border); }
   @container game (min-width: 68rem) and (max-width: 93.99rem) {
     .game-moves { @apply flex-auto rounded-none border-0 bg-transparent; }
   }
@@ -250,7 +250,7 @@
   .game-panel__tools { @apply flex items-center gap-[0.15rem]; }
 
   .icon-button {
-    @apply inline-grid place-items-center w-[2.1rem] h-[2.1rem] p-0 rounded-game border border-transparent bg-transparent text-[0.95rem] text-soft cursor-pointer transition-colors duration-150;
+    @apply inline-grid place-items-center w-[2.1rem] h-[2.1rem] p-0 rounded-game bevel border border-transparent bg-transparent text-[0.95rem] text-soft cursor-pointer transition-colors duration-150;
   }
   .icon-button:hover:not(:disabled), .icon-button[aria-expanded="true"] { @apply bg-soft/10 text-fg; border-color: var(--k-game-border); }
   .icon-button:disabled { @apply opacity-30 cursor-default; }
@@ -258,7 +258,7 @@
 
   /* Flat, squared action button of the game page. */
   .game-button {
-    @apply inline-flex items-center justify-center gap-[0.55em] px-4 py-[0.6em] rounded-game border border-soft/45 bg-soft/5 text-[0.85rem] uppercase tracking-[0.08em] text-fg cursor-pointer transition-colors duration-150;
+    @apply inline-flex items-center justify-center gap-[0.55em] px-4 py-[0.6em] rounded-game bevel border border-soft/45 bg-soft/5 text-[0.85rem] uppercase tracking-[0.08em] text-fg cursor-pointer transition-colors duration-150;
   }
   .game-button:hover:not(:disabled) { @apply bg-soft/15 border-soft; }
   .game-button:disabled { @apply opacity-50 cursor-default; }
@@ -270,7 +270,7 @@
   /* Display settings popover (gear button). */
   .board-settings { @apply relative; }
   .board-settings__menu {
-    @apply absolute right-0 z-30 flex w-[17rem] flex-col gap-2 rounded-game border border-soft/30 bg-popover p-3.5 text-[0.9rem] shadow-raised;
+    @apply absolute right-0 z-30 flex w-[17rem] flex-col gap-2 rounded-game bevel border border-soft/30 bg-popover p-3.5 text-[0.9rem] shadow-raised;
     top: calc(100% + 0.4rem);
   }
   .board-settings__menu[hidden] { display: none; }
@@ -307,7 +307,7 @@
 
   .game-actions {
     grid-area: actions;
-    @apply grid gap-2 self-center rounded-game border bg-panel px-3 py-2.5;
+    @apply grid gap-2 self-center rounded-game bevel border bg-panel px-3 py-2.5;
     grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
     border-color: var(--k-game-border);
   }
@@ -317,7 +317,7 @@
   }
 
   /* Inspected piece or stack (hover, selection, long press). Stacked/mid: figure left, text right. Wide: figure on top. */
-  .piece-info { grid-area: pieces; @apply flex min-h-0 flex-col overflow-hidden rounded-game border bg-panel px-3.5 pb-3 pt-2.5; border-color: var(--k-game-border); }
+  .piece-info { grid-area: pieces; @apply flex min-h-0 flex-col overflow-hidden rounded-game bevel border bg-panel px-3.5 pb-3 pt-2.5; border-color: var(--k-game-border); }
   @container game (min-width: 68rem) and (max-width: 93.99rem) {
     .piece-info { @apply flex-none rounded-none border-0 bg-transparent; border-top: 1px solid var(--k-game-border); }
   }
@@ -325,7 +325,7 @@
   .piece-info__body { @apply flex min-h-0 flex-auto items-start gap-3 text-[0.85rem] leading-snug; }
   @container game (min-width: 94rem) { .piece-info__body { @apply flex-col items-stretch gap-2.5; } }
   .piece-info__hint { @apply m-0 italic text-fg/50; }
-  .piece-info__figure { @apply w-[6.5rem] shrink-0 rounded-game; aspect-ratio: 1; background: radial-gradient(circle at 50% 45%, rgb(var(--k-soft) / 0.08), transparent 70%); }
+  .piece-info__figure { @apply w-[6.5rem] shrink-0 rounded-game bevel; aspect-ratio: 1; background: radial-gradient(circle at 50% 45%, rgb(var(--k-soft) / 0.08), transparent 70%); }
   .piece-info__figure svg { @apply block h-full w-full overflow-visible; }
   @container game (min-width: 94rem) { .piece-info__figure { @apply min-h-0 w-auto max-h-52 self-center; flex: 1 1 13rem; } }
   .piece-info__details, .piece-info__hint { @apply min-w-0; flex: 1 1 0; }
@@ -338,7 +338,7 @@
 
   /* ── Feedback banner (signed-in players) ──────────────────────────────── */
   .feedback-banner {
-    @apply mx-auto mt-8 flex w-full max-w-[60rem] cursor-pointer items-center gap-4 rounded-game border border-soft/30 px-5 py-3.5 text-left text-fg transition-[border-color,transform,box-shadow] duration-200;
+    @apply mx-auto mt-8 flex w-full max-w-[60rem] cursor-pointer items-center gap-4 rounded-game bevel border border-soft/30 px-5 py-3.5 text-left text-fg transition-[border-color,transform,box-shadow] duration-200;
     background: radial-gradient(circle at 0% 50%, rgb(var(--k-turn) / 0.18), transparent 45%), linear-gradient(100deg, #191510, #0e0d0b 70%);
   }
   .feedback-banner:hover { @apply border-soft shadow-raised; transform: translateY(-1px); }
@@ -347,7 +347,7 @@
   .feedback-banner__text { @apply flex min-w-0 flex-1 flex-col; }
   .feedback-banner__title { @apply font-title text-[1.3rem] leading-tight text-soft; }
   .feedback-banner__subtitle { @apply text-[0.9rem] text-fg/70; }
-  .feedback-banner__cta { @apply inline-flex shrink-0 items-center gap-[0.5em] rounded-game border border-turn/70 px-[0.9em] py-[0.5em] text-[0.8rem] uppercase tracking-[0.08em] text-turn-text max-sm:hidden; }
+  .feedback-banner__cta { @apply inline-flex shrink-0 items-center gap-[0.5em] rounded-game bevel border border-turn/70 px-[0.9em] py-[0.5em] text-[0.8rem] uppercase tracking-[0.08em] text-turn-text max-sm:hidden; }
 
   /* ── Page fullscreen (toggled on <html> by PageFullscreen.ts) ─────────────
      Chrome disappears; the height budget grows to the whole viewport, so board and columns simply refit. */

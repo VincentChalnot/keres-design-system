@@ -4,7 +4,7 @@
 @layer components {
   /* ── Alert (Bulma .notification) ─ <div class="alert alert--success"> ─────────── */
   .alert {
-    @apply relative mb-4 rounded-md border px-4 py-3 text-base;
+    @apply edged relative mb-4 rounded-md bevel border px-4 py-3 text-base;
     @apply bg-surface-hover border-edge text-fg;
   }
   .alert a { @apply underline font-medium; }
@@ -12,11 +12,11 @@
   .alert--danger { @apply bg-danger/10 border-danger/50 text-danger-text; }
   .alert--info { @apply bg-info/10 border-info/40 text-info; }
   .alert--warning { @apply bg-warning/10 border-warning/40 text-warning; }
-  .alert--brand { @apply bg-brand/40 border-line text-fg; }
+  .alert--brand { @apply bg-brand/40 text-fg; }
   .alert__close { @apply absolute top-2.5 right-2.5; }
 
   /* ── Callout (rules page "warning" / "special-note") ─────────────────── */
-  .callout { @apply my-5 rounded border-l-4 border-fg bg-brand p-4 text-fg; }
+  .callout { @apply bevel my-5 rounded-md border-l-4 border-fg bg-brand p-4 text-fg; }
   .callout--warning { @apply border-primary; }
 
   /* ── Modal ─ toggle with .is-active ───────────────────────────────────
@@ -25,10 +25,10 @@
        <section class="modal__body">…</section><footer class="modal__foot">…</footer></div></div> */
   .modal { @apply hidden fixed inset-0 z-modal items-center justify-center p-4; }
   .modal.is-active { @apply flex; }
-  .modal__backdrop { @apply absolute inset-0 bg-black/80; }
+  .modal__backdrop { @apply absolute inset-0 bg-black/75 backdrop-blur-[3px]; }
   .modal__card {
     @apply relative flex flex-col w-full max-w-[40rem] max-h-[calc(100dvh-2rem)] overflow-hidden;
-    @apply rounded-lg border border-line bg-surface shadow-modal animate-pop;
+    @apply edged rounded-lg bevel border bg-surface shadow-modal animate-pop;
   }
   .modal__head { @apply flex items-center justify-between gap-4 px-5 py-4 border-b border-edge; }
   .modal__title { @apply font-title text-xl m-0 text-fg; }
