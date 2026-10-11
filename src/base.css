@@ -7,6 +7,20 @@
     font-display: swap;
   }
   @font-face {
+    font-family: 'Source Serif 4';
+    src: url('/fonts/SourceSerif4.woff2') format('woff2');
+    font-weight: 200 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Source Serif 4';
+    src: url('/fonts/SourceSerif4-Italic.woff2') format('woff2');
+    font-weight: 200 900;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
     font-family: 'RomanSerif';
     src: url('/fonts/RomanSerif.ttf') format('truetype');
     font-weight: normal;
@@ -24,7 +38,7 @@
 
   /* h1 is the hero / landing title; page titles use .page-title */
   h1 {
-    @apply font-display text-h1 mt-12 mb-0 text-balance min-[600px]:text-h1-lg;
+    @apply font-title text-h1 mt-12 mb-0 text-balance min-[600px]:text-h1-lg;
   }
   h2, h3, h4, h5, h6 {
     @apply font-title text-h2 mb-2 text-balance;

@@ -13,16 +13,16 @@
   .help--danger { @apply text-danger-text; }
 
   .input, .textarea, .select {
-    @apply edged block w-full rounded-md bevel border bg-surface px-3.5 py-2 text-base text-fg;
+    @apply block w-full rounded-md bevel border border-line bg-surface px-3.5 py-2 text-base text-fg;
     @apply placeholder:text-subtle transition-colors duration-150;
-    @apply hover:[--edge-hi:var(--k-primary-hi)] focus:[--edge-hi:var(--k-primary-hi)] focus:[--edge-lo:var(--k-primary)] focus:outline-none focus:ring-2 focus:ring-primary/30;
+    @apply hover:border-line-hi focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30;
   }
   .input { @apply h-10; }
   .textarea { @apply min-h-[6rem] resize-y; }
   .input:disabled, .textarea:disabled, .select:disabled, .input[readonly] { @apply opacity-60 cursor-not-allowed; }
   .input.is-invalid, .textarea.is-invalid, .select.is-invalid, [aria-invalid="true"] { @apply border-danger focus:ring-danger/30; }
   .input.is-valid { @apply border-success focus:ring-success/30; }
-  .input--sm, .select--sm { @apply h-8 text-sm px-3; }
+  .input--sm, .select--sm { @apply h-8 text-sm px-3 rounded-sm; }
 
   .select {
     @apply h-10 appearance-none pr-9 cursor-pointer;

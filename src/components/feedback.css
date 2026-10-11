@@ -4,14 +4,14 @@
 @layer components {
   /* ── Alert (Bulma .notification) ─ <div class="alert alert--success"> ─────────── */
   .alert {
-    @apply edged relative mb-4 rounded-md bevel border px-4 py-3 text-base;
+    @apply edged mb-4 rounded-md bevel border px-4 py-3 text-base;
     @apply bg-surface-hover border-edge text-fg;
   }
   .alert a { @apply underline font-medium; }
-  .alert--success { @apply bg-success/10 border-success/40 text-success; }
-  .alert--danger { @apply bg-danger/10 border-danger/50 text-danger-text; }
-  .alert--info { @apply bg-info/10 border-info/40 text-info; }
-  .alert--warning { @apply bg-warning/10 border-warning/40 text-warning; }
+  .alert--success { @apply bg-success/10 text-success; --edge-hi: var(--k-success); --edge-lo: var(--k-success); --edge-opacity: 0.45; }
+  .alert--danger { @apply bg-danger/10 text-danger-text; --edge-hi: var(--k-danger-text); --edge-lo: var(--k-danger); --edge-opacity: 0.55; }
+  .alert--info { @apply bg-info/10 text-info; --edge-hi: var(--k-info); --edge-lo: var(--k-info); --edge-opacity: 0.45; }
+  .alert--warning { @apply bg-warning/10 text-warning; --edge-hi: var(--k-warning); --edge-lo: var(--k-warning); --edge-opacity: 0.45; }
   .alert--brand { @apply bg-brand/40 text-fg; }
   .alert__close { @apply absolute top-2.5 right-2.5; }
 
@@ -27,7 +27,8 @@
   .modal.is-active { @apply flex; }
   .modal__backdrop { @apply absolute inset-0 bg-black/75 backdrop-blur-[3px]; }
   .modal__card {
-    @apply relative flex flex-col w-full max-w-[40rem] max-h-[calc(100dvh-2rem)] overflow-hidden;
+    @apply relative flex flex-col w-full max-w-[40rem] max-h-[calc(100dvh-2rem)];
+    overflow: clip; overflow-clip-margin: 1px;
     @apply edged rounded-lg bevel border bg-surface shadow-modal animate-pop;
   }
   .modal__head { @apply flex items-center justify-between gap-4 px-5 py-4 border-b border-edge; }

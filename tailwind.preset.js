@@ -57,7 +57,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: 'var(--k-font-sans)',
+        sans: 'var(--k-font-body)',
+        body: 'var(--k-font-body)',
         display: 'var(--k-font-display)',
         title: 'var(--k-font-title)',
         mono: 'var(--k-font-mono)',
