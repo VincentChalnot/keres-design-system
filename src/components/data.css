@@ -20,7 +20,7 @@
   .toolbar__group { @apply flex flex-wrap items-center gap-2; }
 
   /* Row of a list: players/status on the left, action on the right (Bulma .box.game-row) */
-  .list-row { @apply flex items-center justify-between gap-4; }
+  .list-row { @apply flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start; }
   .list-row__body { @apply flex-1 min-w-0; }
   .list-row__action { @apply shrink-0; }
   .list-row__meta { @apply flex flex-wrap items-center gap-x-2.5 gap-y-1 mb-0 text-[0.9rem] text-muted; }
