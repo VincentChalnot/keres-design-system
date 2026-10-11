@@ -33,9 +33,10 @@
   .provider-list { @apply list-none m-0 p-0; }
   .provider-row { @apply flex items-center gap-2; }
 
-  /* Collapsible tree (admin opening explorer) */
+  /* Collapsible tree (admin opening explorer): nested lists, indented, tight. */
   .tree { @apply list-none m-0 p-0; }
-  .tree ul { @apply pl-4 ml-0; }
+  .tree ul { @apply list-none pl-4 ml-0 mb-0; }
+  .tree li { @apply mb-1; }
 
   /* ── Announcements: newest first, older ones in a native <details> ──────── */
   .announcements__rule { @apply my-5 border-line; }

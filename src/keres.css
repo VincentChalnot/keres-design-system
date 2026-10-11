@@ -17,6 +17,7 @@
 @import "./components/data.css";
 @import "./components/marketing.css";
 @import "./components/game.css";
+@import "./components/admin.css";
 @import "./tw/utilities.css";
 @import "./utilities.css";
 @import "./print.css";

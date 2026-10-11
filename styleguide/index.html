@@ -80,7 +80,7 @@
     <b>Game</b>
     <a href="#game">Game screen</a><a href="/game.html">Game view lab ↗</a><a href="#pieces">Pieces &amp; rules</a>
     <b>Site</b>
-    <a href="#marketing">Hero &amp; sections</a><a href="#errors">Error page</a><a href="#footer">Footer</a>
+    <a href="#marketing">Hero &amp; sections</a><a href="#errors">Error page</a><a href="#footer">Footer</a><a href="#admin">Admin tools</a>
     <b>Compositions</b>
     <a href="#pages">Page layouts</a>
   </aside>
@@ -653,6 +653,34 @@
 
     <h2 class="sg-h2" id="footer">Footer</h2>
     <div class="sg-demo sg-demo--bare"><footer class="footer"><p class="mb-2">&copy; Keres 2025-2026 <span class="footer__meta">v1.4.2</span></p><span class="lang-switch lang-switch--footer"><span class="lang-switch__item is-current">English</span><a class="lang-switch__item" href="#footer">Français</a></span><nav><a href="#footer">Legal notice</a><a href="#footer">Terms of use</a><a href="#footer">Privacy policy</a><a href="#footer">Contact</a><a href="#footer">Feedback</a></nav></footer></div>
+
+    <!-- ═══════════════════════════ ADMIN TOOLS ═══════════════════════════ -->
+    <h2 class="sg-h2" id="admin">Admin tools</h2>
+    <p class="sg-lede">Board editor palette (<span class="sg-code">board-editor__*</span>, admin.css) and the opening tree (<span class="sg-code">tree</span>). The board column <span class="sg-code">board-editor__board</span> is sticky and sized from the viewport height by the platform.</p>
+    <div class="sg-demo"><div class="grid gap-6 md:grid-cols-2">
+      <div class="card !mb-0"><h3 class="card__title card__title--sm">Pieces</h3>
+        <div class="board-editor__group"><p class="eyebrow">White</p>
+          <div class="board-editor__row board-editor__row--white">
+            <button class="board-editor__tool" aria-pressed="true" aria-label="King"><svg viewBox="0 0 24 24" class="text-piece-light"><use href="#i-king"/></svg></button>
+            <button class="board-editor__tool" aria-pressed="false" aria-label="Rook"><svg viewBox="0 0 24 24" class="text-piece-light"><use href="#i-king"/></svg></button>
+            <button class="board-editor__tool" aria-pressed="false" aria-label="Knight"><svg viewBox="0 0 24 24" class="text-piece-light"><use href="#i-king"/></svg></button>
+          </div></div>
+        <div class="board-editor__group"><p class="eyebrow">Black</p>
+          <div class="board-editor__row board-editor__row--black">
+            <button class="board-editor__tool" aria-pressed="false" aria-label="King"><svg viewBox="0 0 24 24" class="text-piece-dark"><use href="#i-king"/></svg></button>
+            <button class="board-editor__tool" aria-pressed="false" aria-label="Rook"><svg viewBox="0 0 24 24" class="text-piece-dark"><use href="#i-king"/></svg></button>
+          </div></div>
+        <div class="board-editor__group"><button class="board-editor__tool board-editor__tool--eraser"><span class="icon"><svg class="w-full h-full"><use href="#i-pen"/></svg></span><span>Eraser</span></button></div>
+      </div>
+      <div class="card !mb-0"><h3 class="card__title card__title--sm">Opening tree</h3>
+        <ul class="tree">
+          <li><a href="#admin">H1 → G3 (99)</a> <span class="tag tag--sm ml-2">-0.2</span>
+            <ul><li><a href="#admin">H9 → G7 (38)</a> <span class="tag tag--sm ml-2">+1.5</span>
+              <ul><li><a href="#admin">B1 → C3 (10)</a> <span class="tag tag--sm ml-2">…</span></li><li class="text-subtle text-xs">No recorded continuations.</li></ul></li></ul></li>
+          <li><a href="#admin">F7 → G6 (6)</a> <span class="tag tag--sm ml-2">+1.9</span></li>
+        </ul>
+      </div>
+    </div></div>
 
     <!-- ═══════════════════════════ PAGES ═══════════════════════════ -->
     <h2 class="sg-h2" id="pages">Page layouts</h2>

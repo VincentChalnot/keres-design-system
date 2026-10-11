@@ -1,6 +1,6 @@
 {
   "name": "@keres/design-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Shared Tailwind design system for the Keres website (Hugo) and platform (Symfony/Vite)",
   "private": true,
   "main": "tailwind.preset.js",
