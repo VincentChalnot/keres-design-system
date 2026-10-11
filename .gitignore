@@ -2,3 +2,4 @@ node_modules
 dist
 styleguide/keres.css
 .wrangler
+/.idea
