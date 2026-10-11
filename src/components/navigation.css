@@ -54,7 +54,8 @@
   .navbar__menu .btn.navbar__link .icon { @apply mx-0; }
   .navbar__menu .btn.navbar__link.navbar__ghost { @apply lg:hover:text-fg; }
   .navbar__user { @apply text-fg; }
-  .navbar__avatar { @apply w-7 h-7 rounded-full object-cover; }
+  /* Same 1.5rem column as .navbar__icon in the mobile menu, 1.75rem in the desktop bar. */
+  .navbar__avatar { @apply w-6 h-6 lg:w-7 lg:h-7 shrink-0 rounded-full object-cover; }
   .navbar__sep { @apply hidden lg:block h-6 w-px bg-line; }
 
   /* ── Language switcher ─ inherits colour from its surface ────────────── */
@@ -72,10 +73,11 @@
   .bell__badge {
     @apply absolute -top-[0.45rem] -right-[0.55rem] min-w-[1.15rem] px-[0.3rem] rounded-full bg-primary text-ink text-[0.7rem] font-bold leading-[1.15rem] text-center;
   }
+  /* `.edged` is `position: relative` (anchors its ::before ring), so the dropdown is absolute from lg up
+     only (a plain `absolute` here would lose to it); below lg the panel flows inside the open menu. */
   .bell__panel {
-    @apply absolute -right-4 top-[calc(100%+0.9rem)] z-dropdown w-[min(24rem,calc(100vw-2rem))] text-[0.95rem];
-    @apply rounded-md bevel edged border bg-sunken shadow-raised;
-    @apply max-lg:static max-lg:w-auto max-lg:mx-4 max-lg:mb-2;
+    @apply rounded-md bevel edged border bg-sunken shadow-raised text-[0.95rem] mx-4 mb-2;
+    @apply lg:absolute lg:-right-4 lg:top-[calc(100%+0.9rem)] lg:z-dropdown lg:w-[min(24rem,calc(100vw-2rem))] lg:mx-0 lg:mb-0;
   }
   .bell__header { @apply flex items-center justify-between px-3.5 py-2.5 border-b border-edge; }
   .bell__list { @apply list-none m-0 p-0 max-h-[22rem] overflow-y-auto; }
