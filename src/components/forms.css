@@ -13,9 +13,9 @@
   .help--danger { @apply text-danger-text; }
 
   .input, .textarea, .select {
-    @apply block w-full rounded-md border border-line bg-surface px-3.5 py-2 text-base text-fg;
+    @apply edged block w-full rounded-md bevel border bg-surface px-3.5 py-2 text-base text-fg;
     @apply placeholder:text-subtle transition-colors duration-150;
-    @apply hover:border-soft/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30;
+    @apply hover:[--edge-hi:var(--k-primary-hi)] focus:[--edge-hi:var(--k-primary-hi)] focus:[--edge-lo:var(--k-primary)] focus:outline-none focus:ring-2 focus:ring-primary/30;
   }
   .input { @apply h-10; }
   .textarea { @apply min-h-[6rem] resize-y; }
@@ -26,7 +26,7 @@
 
   .select {
     @apply h-10 appearance-none pr-9 cursor-pointer;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23e1c499' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m5 8 5 5 5-5'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23cda342' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m5 8 5 5 5-5'/></svg>");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 1rem;
@@ -54,11 +54,11 @@
 
   /* Native <details> disclosure and <progress> */
   .progress {
-    @apply block w-full h-3 appearance-none overflow-hidden rounded-full bg-surface border-0;
+    @apply block w-full h-3 appearance-none overflow-hidden rounded-sm bevel bg-surface border-0;
   }
   .progress::-webkit-progress-bar { @apply bg-surface; }
-  .progress::-webkit-progress-value { @apply bg-primary rounded-full; }
-  .progress::-moz-progress-bar { @apply bg-primary rounded-full; }
+  .progress::-webkit-progress-value { @apply bg-primary; }
+  .progress::-moz-progress-bar { @apply bg-primary; }
   .progress--sm { @apply h-1.5; }
   .progress:indeterminate {
     background-image: linear-gradient(to right, rgb(var(--k-primary)) 30%, rgb(var(--k-surface)) 30%);

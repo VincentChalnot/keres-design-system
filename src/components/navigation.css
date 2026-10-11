@@ -48,9 +48,10 @@
   .navbar__icon { @apply inline-flex items-center justify-center w-6 h-6 text-[1.1rem] shrink-0; }
   .navbar__icon.is-mobile-only, .is-mobile-only { @apply lg:hidden; }
   /* Mobile: buttons become plain rows so they line up with links */
-  .navbar__menu .btn.navbar__link { @apply h-auto w-full justify-start rounded-none border-0 bg-transparent text-fg text-base px-4 py-3 hover:bg-transparent hover:text-primary lg:text-sm lg:w-auto lg:rounded-full lg:border lg:px-3.5 lg:py-1 lg:h-8; }
-  .navbar__menu .btn.navbar__link.navbar__play { @apply text-primary lg:bg-primary lg:text-ink lg:border-transparent lg:hover:text-ink lg:hover:bg-primary-hover; }
-  .navbar__menu .btn.navbar__link.navbar__ghost { @apply lg:border-fg/60 lg:hover:border-fg lg:hover:text-fg; }
+  .navbar__menu .btn.navbar__link { @apply h-auto w-full justify-start rounded-none border-0 bg-transparent text-fg text-base px-4 py-3 hover:bg-transparent hover:text-primary lg:text-sm lg:w-auto lg:rounded-md lg:border lg:px-3.5 lg:py-1 lg:h-8 normal-case tracking-normal; min-width: 0; }
+  .navbar__menu .btn.navbar__link.navbar__play { @apply text-primary lg:bg-primary lg:text-white lg:hover:text-white lg:hover:bg-primary-hover; }
+  .navbar__menu .btn.navbar__link .icon { @apply mx-0; }
+  .navbar__menu .btn.navbar__link.navbar__ghost { @apply lg:hover:text-fg; }
   .navbar__user { @apply text-fg; }
   .navbar__avatar { @apply w-7 h-7 rounded-full object-cover; }
   .navbar__sep { @apply hidden lg:block h-6 w-px bg-line; }
@@ -58,7 +59,7 @@
   /* ── Language switcher ─ inherits colour from its surface ────────────── */
   .lang-switch { @apply inline-flex flex-wrap items-center justify-center gap-1 text-[0.85rem]; }
   .lang-switch__item {
-    @apply px-[0.55rem] py-[0.1rem] rounded-full border border-transparent text-inherit leading-normal opacity-75 hover:opacity-100 hover:no-underline;
+    @apply px-[0.55rem] py-[0.1rem] rounded-md bevel border border-transparent text-inherit leading-normal opacity-75 hover:opacity-100 hover:no-underline;
   }
   .lang-switch__item.is-current { @apply border-current font-bold opacity-100; }
   .lang-switch--navbar { @apply text-[0.8rem] tracking-wider max-lg:justify-start max-lg:px-4 max-lg:py-2; }
@@ -72,7 +73,7 @@
   }
   .bell__panel {
     @apply absolute -right-4 top-[calc(100%+0.9rem)] z-dropdown w-[min(24rem,calc(100vw-2rem))] text-[0.95rem];
-    @apply rounded-md border border-line bg-sunken shadow-raised;
+    @apply rounded-md bevel edged border bg-sunken shadow-raised;
     @apply max-lg:static max-lg:w-auto max-lg:mx-4 max-lg:mb-2;
   }
   .bell__header { @apply flex items-center justify-between px-3.5 py-2.5 border-b border-edge; }
@@ -80,7 +81,7 @@
   .bell__footer { @apply block px-3.5 py-2.5 text-center border-t border-edge; }
 
   /* Notification rows — shared by the bell dropdown and /notifications */
-  .notif { @apply flex items-start gap-1 m-0 border-b border-[#1f1f1f]; }
+  .notif { @apply flex items-start gap-1 m-0 border-b border-[rgb(var(--k-edge))]; }
   .notif.is-unread { @apply bg-primary/10 shadow-[inset_3px_0_0_rgb(var(--k-primary))]; }
   .notif__link { @apply flex flex-1 gap-2.5 px-3.5 py-2.5 text-fg hover:bg-white/5 hover:no-underline; }
   .notif__link .icon { @apply text-primary; }
@@ -98,7 +99,7 @@
   }
   .tab.is-active, .tab[aria-current] { @apply border-primary text-primary; }
   .tabs--pill { @apply border-0 gap-2; }
-  .tabs--pill .tab { @apply rounded-full border border-transparent mb-0; }
+  .tabs--pill .tab { @apply rounded-md bevel border border-transparent mb-0; }
   .tabs--pill .tab.is-active { @apply bg-primary text-ink; }
 
   /* ── Side menu (settings, admin) ─────────────────────────────────────── */
@@ -107,14 +108,14 @@
   .menu__list { @apply list-none m-0 p-0 flex flex-col gap-0.5; }
   .menu__list li { @apply m-0; }
   .menu__link {
-    @apply flex items-center gap-2 rounded-md px-3 py-2 text-fg hover:bg-white/5 hover:no-underline;
+    @apply flex items-center gap-2 rounded-md bevel px-3 py-2 text-fg hover:bg-white/5 hover:no-underline;
   }
   .menu__link.is-active, .menu__link[aria-current="page"] { @apply bg-primary text-ink; }
 
   /* ── Pagination ───────────────────────────────────────────────────────── */
   .pagination { @apply flex flex-wrap items-center justify-between gap-2 my-4 text-sm; }
   .pagination__prev, .pagination__next {
-    @apply inline-flex items-center h-9 px-4 rounded-full border border-fg/60 text-fg hover:bg-fg/10 hover:no-underline;
+    @apply inline-flex items-center h-9 px-4 rounded-md bevel edged border text-fg hover:bg-fg/10 hover:no-underline;
   }
   .pagination__prev[disabled], .pagination__next[disabled], .pagination__prev.is-disabled, .pagination__next.is-disabled {
     @apply opacity-40 pointer-events-none;
@@ -122,7 +123,7 @@
   .pagination__list { @apply order-last flex w-full flex-wrap items-center justify-center gap-1 list-none m-0 p-0 sm:order-none sm:w-auto sm:flex-1; }
   .pagination__list li { @apply m-0; }
   .pagination__link {
-    @apply inline-flex items-center justify-center min-w-9 h-9 px-2 rounded-full border border-line text-fg hover:border-primary hover:text-primary hover:no-underline;
+    @apply inline-flex items-center justify-center min-w-9 h-9 px-2 rounded-md bevel edged border text-fg hover:border-primary hover:text-primary hover:no-underline;
   }
   .pagination__link.is-current { @apply bg-primary border-primary text-ink font-bold; }
   .pagination__ellipsis { @apply px-1 text-muted; }

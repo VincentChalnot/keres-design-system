@@ -10,7 +10,16 @@ const rgb = (name) => `rgb(var(--k-${name}) / <alpha-value>)`;
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    // Panels, badges, alerts and buttons are bevelled rather than rounded.
+    // `bevel` can be @apply-ed by components; the base rule covers the
+    // `rounded-*` utilities used directly in templates (not rounded-full).
+    ({ addBase, addUtilities }) => {
+      addBase({ '.rounded, .rounded-sm, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-game': { 'corner-shape': 'bevel' } });
+      addUtilities({ '.bevel': { 'corner-shape': 'bevel' } });
+    },
+  ],
   theme: {
     extend: {
       colors: {
@@ -18,14 +27,15 @@ module.exports = {
         sunken: rgb('sunken'),
         inactive: rgb('inactive'),
         surface: { DEFAULT: rgb('surface'), hover: rgb('surface-hover') },
-        line: rgb('line'),
+        line: { DEFAULT: rgb('line'), hi: rgb('line-hi'), lo: rgb('line-lo') },
         edge: rgb('edge'),
         fg: rgb('fg'),
         soft: rgb('soft'),
         muted: rgb('muted'),
         subtle: rgb('subtle'),
         ink: rgb('ink'),
-        primary: { DEFAULT: rgb('primary'), hover: rgb('primary-hover') },
+        primary: { DEFAULT: rgb('primary'), hover: rgb('primary-hover'), hi: rgb('primary-hi'), lo: rgb('primary-lo') },
+        secondary: { DEFAULT: rgb('secondary'), hover: rgb('secondary-hover'), hi: rgb('secondary-hi'), lo: rgb('secondary-lo') },
         brand: rgb('brand'),
         success: rgb('success'),
         danger: { DEFAULT: rgb('danger'), text: rgb('danger-text') },
