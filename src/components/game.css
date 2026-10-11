@@ -238,10 +238,10 @@
   .game-panel__inner { display: contents; }
   @container game (min-width: 68rem) and (max-width: 93.99rem) {
     .game-panel { @apply relative block min-h-[30rem]; }
-    .game-panel__inner { @apply absolute inset-0 flex flex-col overflow-hidden rounded-game bevel border bg-panel; border-color: var(--k-game-border); }
+    .game-panel__inner { @apply absolute inset-0 flex flex-col rounded-game bevel border bg-panel; border-color: var(--k-game-border); }
   }
 
-  .game-moves { grid-area: moves; @apply flex min-h-0 flex-col overflow-hidden rounded-game bevel border bg-panel; border-color: var(--k-game-border); }
+  .game-moves { grid-area: moves; @apply flex min-h-0 flex-col rounded-game bevel border bg-panel; border-color: var(--k-game-border); }
   @container game (min-width: 68rem) and (max-width: 93.99rem) {
     .game-moves { @apply flex-auto rounded-none border-0 bg-transparent; }
   }
@@ -278,6 +278,16 @@
   .board-settings__title { @apply text-xs uppercase tracking-[0.1em] text-soft; }
   .board-settings__hint, .board-settings__status { @apply text-[0.8rem] leading-snug text-fg/60; }
   .board-settings__status:empty { display: none; }
+
+  /* A label with a segmented choice under it (piece movement speed). */
+  .board-settings__row { @apply flex flex-col gap-1.5; }
+  /* Mutually exclusive buttons side by side; the pressed one is filled (aria-pressed). */
+  .segmented { @apply flex gap-[0.15rem] rounded-game bevel p-[0.15rem]; background: rgb(var(--k-track)); }
+  .segmented__option {
+    @apply flex-1 cursor-pointer rounded-[3px] border-0 bg-transparent px-2 py-[0.35em] font-sans text-[0.8rem] text-fg/75 transition-colors duration-150 hover:text-fg;
+  }
+  .segmented__option[aria-pressed="true"] { @apply bg-turn text-white; }
+  .segmented__option:focus-visible { @apply outline outline-2 outline-offset-2 outline-turn; }
 
   /* A checkbox drawn as an on/off switch (role="switch"). */
   .switch-row { @apply flex cursor-pointer items-center justify-between gap-3; }
@@ -365,6 +375,9 @@
   .game-header__name.is-engine { @apply italic text-soft; }
   .game-header__name.is-anonymous { @apply text-muted; }
   .game-header--compact { @apply justify-start mb-1.5 text-[0.95rem]; }
+
+  /* The game screen is of no use on paper. */
+  @media print { .game-container { display: none; } }
 
   .hero-image { @apply max-w-full rounded-[0.6em]; }
 }
