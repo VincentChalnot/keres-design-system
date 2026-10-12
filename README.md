@@ -34,9 +34,14 @@ The platform's integration notes live in its `docs/design-system.md`.
 2. Bump `version` in `package.json` (+ `package-lock.json`), commit (conventional commits), `git tag -a vX.Y.Z -m …`.
 3. `git push origin main --follow-tags`, then bump the `#vX.Y.Z` in the consumers.
 
+## License
+
+Proprietary with a conditional AGPL-3.0 grant, identical to the Keres platform: see [`LICENSE`](LICENSE).
+
 ## Publishing to npm (not done yet; the platform still uses the git dependency)
 
 `package.json` is publish-ready (`@keres/design-system`, `files`, `exports`, `publishConfig.access: public`, provenance).
-`.github/workflows/publish.yaml` publishes on a pushed `vX.Y.Z` tag (it checks the tag equals `version`, builds, then
-`npm publish --provenance`) and needs the repository secret `NPM_TOKEN`. Check the tarball locally with `npm pack --dry-run`.
-Decide the `license` field before the first publish (it is `UNLICENSED` for now).
+`.github/workflows/publish.yaml` publishes on a pushed `vX.Y.Z` tag using npm Trusted Publishing (GitHub OIDC, no
+token or secret): it checks the tag equals `version`, builds, then `npm publish --provenance --access public`. The
+package must first be linked to this repo and workflow in its npm settings (Trusted Publisher). Check the tarball
+locally with `npm pack --dry-run`.

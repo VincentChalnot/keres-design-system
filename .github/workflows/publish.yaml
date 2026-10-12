@@ -1,7 +1,8 @@
 name: Publish to npm
 
 # Runs when a version tag is pushed (git tag -a v0.4.0 -m v0.4.0 && git push --follow-tags).
-# Needs the repository secret NPM_TOKEN (an npm "Automation" or granular token allowed to publish @keres/*).
+# Uses npm Trusted Publishing (OIDC): no NPM_TOKEN. Configure the package on npmjs.com
+# (Settings > Trusted Publisher > GitHub Actions: this repository, workflow file publish.yaml).
 on:
   push:
     tags:
@@ -9,7 +10,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write # npm provenance
+  id-token: write # OIDC token for npm trusted publishing + provenance
 
 jobs:
   publish:
@@ -21,6 +22,9 @@ jobs:
         with:
           node-version: '24'
           registry-url: https://registry.npmjs.org
+
+      - name: Trusted publishing needs npm >= 11.5.1
+        run: npm install -g npm@latest
 
       - name: The tag must match package.json
         run: |
@@ -35,5 +39,3 @@ jobs:
         run: npm pack --dry-run
 
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
