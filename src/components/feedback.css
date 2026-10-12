@@ -8,10 +8,10 @@
     @apply bg-surface-hover border-edge text-fg;
   }
   .alert a { @apply underline font-medium; }
-  .alert--success { @apply bg-success/10 text-success; --edge-hi: var(--k-success); --edge-lo: var(--k-success); --edge-opacity: 0.45; }
-  .alert--danger { @apply bg-danger/10 text-danger-text; --edge-hi: var(--k-danger-text); --edge-lo: var(--k-danger); --edge-opacity: 0.55; }
-  .alert--info { @apply bg-info/10 text-info; --edge-hi: var(--k-info); --edge-lo: var(--k-info); --edge-opacity: 0.45; }
-  .alert--warning { @apply bg-warning/10 text-warning; --edge-hi: var(--k-warning); --edge-lo: var(--k-warning); --edge-opacity: 0.45; }
+  .alert--success { @apply bg-success/10 text-success; --edge-hi: rgb(var(--k-success)); --edge-lo: rgb(var(--k-success)); --edge-opacity: 0.45; }
+  .alert--danger { @apply bg-danger/10 text-danger-text; --edge-hi: var(--k-danger-text); --edge-lo: rgb(var(--k-danger)); --edge-opacity: 0.55; }
+  .alert--info { @apply bg-info/10 text-info; --edge-hi: rgb(var(--k-info)); --edge-lo: rgb(var(--k-info)); --edge-opacity: 0.45; }
+  .alert--warning { @apply bg-warning/10 text-warning; --edge-hi: rgb(var(--k-warning)); --edge-lo: rgb(var(--k-warning)); --edge-opacity: 0.45; }
   .alert--brand { @apply bg-brand/40 text-fg; }
   .alert__close { @apply absolute top-2.5 right-2.5; }
 

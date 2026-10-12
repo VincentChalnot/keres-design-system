@@ -61,7 +61,7 @@
   .progress::-moz-progress-bar { @apply bg-primary; }
   .progress--sm { @apply h-1.5; }
   .progress:indeterminate {
-    background-image: linear-gradient(to right, rgb(var(--k-primary)) 30%, rgb(var(--k-surface)) 30%);
+    background-image: linear-gradient(to right, rgb(var(--k-primary)) 30%, var(--k-surface) 30%);
     background-size: 150% 100%;
     animation: k-progress-slide 1.4s linear infinite;
   }

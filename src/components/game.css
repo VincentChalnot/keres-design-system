@@ -262,8 +262,8 @@
   }
   .game-button:hover:not(:disabled) { @apply bg-soft/15 border-soft; }
   .game-button:disabled { @apply opacity-50 cursor-default; }
-  .game-button.is-danger { border-color: rgb(var(--k-danger-strong) / 0.6); background: rgb(var(--k-danger-deep) / 0.35); color: rgb(var(--k-danger-ink)); }
-  .game-button.is-danger:hover:not(:disabled) { background: rgb(var(--k-danger-deep) / 0.6); border-color: rgb(var(--k-danger-strong)); }
+  .game-button.is-danger { border-color: rgb(var(--k-danger-strong) / 0.6); background: rgb(from var(--k-danger-deep) r g b / 0.35); color: var(--k-danger-ink); }
+  .game-button.is-danger:hover:not(:disabled) { background: rgb(from var(--k-danger-deep) r g b / 0.6); border-color: rgb(var(--k-danger-strong)); }
   .game-button.is-small { @apply px-3 py-[0.45em] text-xs; }
   .game-button.is-hidden { display: none; }
 

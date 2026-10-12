@@ -8,29 +8,29 @@
   <link rel="stylesheet" href="/keres.css">
   <style>
     /* Lab chrome only — never part of the design system. */
-    .lab-seg { display: inline-flex; border: 1px solid rgb(var(--k-line)); border-radius: 9999px; overflow: hidden; }
-    .lab-seg button { padding: .25rem .7rem; font-size: .8rem; color: rgb(var(--k-muted)); background: transparent; border: 0; cursor: pointer; }
-    .lab-seg button + button { border-left: 1px solid rgb(var(--k-line)); }
+    .lab-seg { display: inline-flex; border: 1px solid var(--k-line); border-radius: 9999px; overflow: hidden; }
+    .lab-seg button { padding: .25rem .7rem; font-size: .8rem; color: var(--k-muted); background: transparent; border: 0; cursor: pointer; }
+    .lab-seg button + button { border-left: 1px solid var(--k-line); }
     .lab-seg button[aria-pressed="true"] { background: rgb(var(--k-primary)); color: rgb(var(--k-ink)); font-weight: 600; }
     .lab-seg button:not([aria-pressed="true"]):hover { color: rgb(var(--k-fg)); background: rgb(255 255 255 / .06); }
     .lab-group { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; }
-    .lab-group > b { font: 600 .65rem/1 var(--k-font-sans); letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--k-subtle)); min-width: 5.5rem; }
-    .lab-chip { font-size: .8rem; padding: .3rem .75rem; border-radius: 9999px; border: 1px solid rgb(var(--k-line)); background: transparent; color: rgb(var(--k-fg)); cursor: pointer; white-space: nowrap; }
-    .lab-chip small { color: rgb(var(--k-subtle)); margin-left: .35rem; font-size: .7rem; }
+    .lab-group > b { font: 600 .65rem/1 var(--k-font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--k-subtle); min-width: 5.5rem; }
+    .lab-chip { font-size: .8rem; padding: .3rem .75rem; border-radius: 9999px; border: 1px solid var(--k-line); background: transparent; color: rgb(var(--k-fg)); cursor: pointer; white-space: nowrap; }
+    .lab-chip small { color: var(--k-subtle); margin-left: .35rem; font-size: .7rem; }
     .lab-chip:hover { border-color: rgb(var(--k-primary)); }
     .lab-chip[aria-pressed="true"] { background: rgb(var(--k-primary)); border-color: rgb(var(--k-primary)); color: rgb(var(--k-ink)); }
     .lab-chip[aria-pressed="true"] small { color: rgb(var(--k-ink) / .7); }
     .lab-chip--mark { border-style: dashed; }
-    .lab-stage { background: repeating-conic-gradient(rgb(255 255 255 / .025) 0 25%, transparent 0 50%) 0 0 / 24px 24px; border: 1px dashed rgb(var(--k-line)); border-radius: .75rem; padding: 1rem; overflow: auto; }
-    .lab-device { margin: 0 auto; border-radius: .5rem; box-shadow: 0 0 0 1px rgb(var(--k-line)), 0 12px 40px rgb(0 0 0 / .6); overflow: hidden; background: rgb(var(--k-canvas)); position: relative; }
+    .lab-stage { background: repeating-conic-gradient(rgb(255 255 255 / .025) 0 25%, transparent 0 50%) 0 0 / 24px 24px; border: 1px dashed var(--k-line); border-radius: .75rem; padding: 1rem; overflow: auto; }
+    .lab-device { margin: 0 auto; border-radius: .5rem; box-shadow: 0 0 0 1px var(--k-line), 0 12px 40px rgb(0 0 0 / .6); overflow: hidden; background: rgb(var(--k-canvas)); position: relative; }
     .lab-device iframe { border: 0; display: block; transform-origin: 0 0; background: rgb(var(--k-canvas)); }
     .lab-mode { display: inline-block; padding: .1rem .55rem; border-radius: 9999px; font: 600 .7rem/1.5 var(--k-font-sans); text-transform: uppercase; letter-spacing: .08em; }
     .lab-mode--stacked { background: rgb(var(--k-info) / .2); color: rgb(var(--k-info)); }
     .lab-mode--mid { background: rgb(var(--k-warning) / .2); color: rgb(var(--k-warning)); }
     .lab-mode--wide { background: rgb(var(--k-success) / .2); color: rgb(var(--k-success)); }
-    .lab-readout { font: .8rem var(--k-font-mono); color: rgb(var(--k-muted)); }
+    .lab-readout { font: .8rem var(--k-font-mono); color: var(--k-muted); }
     .lab-readout b { color: rgb(var(--k-fg)); font-weight: 500; }
-    .sg-code { font: .8rem var(--k-font-mono); color: rgb(var(--k-soft)); background: rgb(var(--k-sunken)); border: 1px solid rgb(var(--k-edge)); border-radius: .4rem; padding: .15rem .4rem; }
+    .sg-code { font: .8rem var(--k-font-mono); color: rgb(var(--k-soft)); background: var(--k-sunken); border: 1px solid var(--k-edge); border-radius: .4rem; padding: .15rem .4rem; }
     input[type=range] { accent-color: rgb(var(--k-primary)); }
     .lab-num { width: 5rem; height: 2rem; font-size: .85rem; padding: 0 .5rem; }
   </style>

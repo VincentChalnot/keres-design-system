@@ -34,6 +34,39 @@ The platform's integration notes live in its `docs/design-system.md`.
 2. Bump `version` in `package.json` (+ `package-lock.json`), commit (conventional commits), `git tag -a vX.Y.Z -m …`.
 3. `git push origin main --follow-tags`, then bump the `#vX.Y.Z` in the consumers.
 
+## Token model (`src/tokens.css`)
+
+**Base colours** are the only colour definitions: `--k-canvas`, `--k-fg`, `--k-soft`, `--k-ink`, `--k-primary`,
+`--k-secondary`, `--k-success`, `--k-danger`, `--k-warning`, `--k-info`, `--k-turn` (plus the theme-independent board and
+game colours: `--k-tile-*`, `--k-piece-*`, `--k-track`, `--k-eval-*`, `--k-danger-strong`). They are RGB **triplets**
+(`--k-primary: 196 147 74`), so `rgb(var(--k-primary) / .2)` and Tailwind's `bg-primary/20` work.
+
+**Derived colours** are full CSS colours computed from them in `tokens.css`; never write them by hand:
+
+| Family | Rule |
+|---|---|
+| `primary-hover/hi/lo`, `secondary-hover/hi/lo`, `danger-text/deep/ink`, `turn-text`, `line-hi/lo` | `oklch(from <base> calc(l + ΔL) calc(c * k) calc(h + Δh))`: a lightness offset, a chroma factor and a small hue offset, fitted per hue (the old palette was hand-tuned per hue, hence different numbers for each) |
+| `panel`, `sunken`, `inactive`, `surface`, `popover`, `surface-hover`, `edge` | `color-mix(in oklab, canvas, fg N%)`: the canvas lifted towards the text colour (2.7 → 18.8 %) |
+| `muted`, `subtle` | `color-mix(in oklab, fg, canvas N%)`: the text colour faded into the canvas (31 %, 50 %) |
+| `brand`, `line` | `color-mix(in oklab, primary, canvas N%)`: the gold sunk into the canvas (68 %, 40 %) |
+
+Changing `--k-primary` (or `--k-canvas`, `--k-fg`…) on `:root` re-themes everything: try it in the style guide (colour
+pickers on the base swatches). Deltas against the former static palette are ΔE(oklab)×100 ≤ 1.0 (≤ 0.25 for the shade
+families; at most 5/255 on a single sRGB channel, for `edge` and `muted`).
+
+How to use them:
+- **CSS**: a base token as `rgb(var(--k-primary) / .4)`; a derived one as `var(--k-primary-hi)`, with alpha
+  `rgb(from var(--k-primary-hi) r g b / .4)`. `--edge-hi` / `--edge-lo` (the lit edge of `.edged`) take full colours.
+- **Tailwind**: the same names for both kinds (`bg-primary-hi/30`); the preset emits `rgb(from var(--k-x) r g b / α)` for
+  derived ones (a function in `tailwind.preset.js`, so Tailwind never parses the `from` syntax itself).
+- **JS** that needs a concrete colour (Chart.js…): resolve the token through an element (`getComputedStyle(el).backgroundColor`,
+  drawn on a canvas if the library cannot parse `color(srgb …)`); reading `--k-surface` directly gives the unresolved formula.
+
+Trade-offs: needs relative colour syntax and `color-mix` (Chrome/Edge 119, Safari 16.4, Firefox 128; the DS already
+needs Chrome 139 for the bevels, older browsers fall back to rounded corners but would lose derived colours). Derived
+tokens are computed where they are declared (`:root`), so retheme on `:root`; a scoped override (`.x { --k-primary: … }`)
+changes the base only for direct `rgb(var(--k-primary))` uses, not for the derived ones: redeclare them in that scope.
+
 ## License
 
 Proprietary with a conditional AGPL-3.0 grant, identical to the Keres platform: see [`LICENSE`](LICENSE).

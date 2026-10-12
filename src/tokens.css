@@ -2,68 +2,76 @@
  * Keres design tokens — the single source of truth for every colour, font,
  * radius, shadow and layout metric shared by the website and the platform.
  *
- * Colours are stored as space-separated RGB triplets so Tailwind can apply
- * opacity (`bg-primary/20`) and plain CSS can use `rgb(var(--k-primary) / .2)`.
+ * Token model: a few BASE colours (RGB triplets, so Tailwind can apply opacity
+ * `bg-primary/20` and plain CSS can use `rgb(var(--k-primary) / .2)`) and DERIVED
+ * colours computed from them in CSS (shades, surfaces, text, borders): see README.
  * Components never hard-code a colour: they use these tokens (through the
  * Tailwind names declared in tailwind.preset.js).
  */
 :root {
-  /* ── Surfaces (darkest → lightest) ─────────────────────────────────── */
+  /* ══ Base colours: the ONLY definitions. Space-separated RGB triplets, so Tailwind opacity
+        (`bg-primary/20`) and plain CSS (`rgb(var(--k-primary) / .2)`) both work. Change one of
+        these and every colour derived from it below follows. ═════════════════════════════ */
   --k-canvas: 13 17 15;         /* page background (green-tinted black) #0d110f */
-  --k-sunken: 19 24 21;         /* wells, dropdown panels      #131815 */
-  --k-inactive: 22 27 24;       /* idle clock / muted banner   #161b18 */
-  --k-surface: 24 30 27;        /* cards, modals, inputs       #181e1b */
-  --k-surface-hover: 36 44 40;  /* hovered rows / ghost hover  #242c28 */
-
-  /* ── Lines ─────────────────────────────────────────────────────────── */
-  --k-line: 112 92 50;          /* muted gold, main borders    #705c32 */
-  --k-line-hi: 156 130 72;      /* …lit side (top / left)      #9c8248 */
-  --k-line-lo: 72 60 34;        /* …shaded side (bottom / right) #483c22 */
-  --k-edge: 44 54 49;           /* hairlines inside surfaces   #2c3631 */
-
-  /* ── Text ──────────────────────────────────────────────────────────── */
   --k-fg: 246 243 236;          /* body text (warm white)      #f6f3ec */
   --k-soft: 226 205 152;        /* secondary text, <strong>    #e2cd98 */
-  --k-muted: 163 163 163;       /* helper / meta text          #a3a3a3 */
-  --k-subtle: 119 119 119;      /* hints, placeholders         #777777 */
   --k-ink: 22 18 8;             /* dark icons / text on bright fills #161208 */
-
-  /* ── Brand ─────────────────────────────────────────────────────────── */
   --k-primary: 196 147 74;      /* the Keres gold              #c4934a */
-  --k-primary-hover: 205 163 101;
-  --k-primary-hi: 219 188 143;  /* light catching the top / left edges */
-  --k-primary-lo: 138 101 45;   /* shade on the bottom / right edges  */
   --k-secondary: 24 122 126;    /* teal                        #187a7e */
-  --k-secondary-hover: 34 148 150;
-  --k-secondary-hi: 82 192 186;
-  --k-secondary-lo: 12 78 84;
-  --k-brand: 62 56 36;          /* dark-gold fills (callouts, tags) #3e3824 */
-
-  /* ── Feedback colours ──────────────────────────────────────────────── */
   --k-success: 72 199 142;      /* #48c78e */
   --k-danger: 198 40 54;        /* #c62836 */
-  --k-danger-text: 245 132 143; /* readable red on dark surfaces */
   --k-warning: 240 160 48;      /* #f0a030 */
   --k-info: 62 142 208;         /* #3e8ed0 */
+  --k-turn: 31 171 163;         /* side to move (teal)         #1faba3 */
 
-  /* ── Board (SVG tiles + pieces) ────────────────────────────────────── */
+  /* ── Board (SVG tiles + pieces) and game-only colours: independent of the theme ─────── */
   --k-tile-dark: 81 58 39;      /* #513a27 */
   --k-tile-light: 221 189 144;  /* #ddbd90 */
   --k-tile-stroke: 41 26 17;    /* #291a11 */
   --k-piece-light: 221 204 173; /* #ddccad */
   --k-piece-dark: 29 22 16;     /* #1d1610 */
-
-  /* ── Game screen ───────────────────────────────────────────────────── */
-  --k-turn: 31 171 163;         /* side to move (teal)         #1faba3 */
-  --k-turn-text: 80 215 207;    /* teal readable on dark panels */
-  --k-panel: 17 22 19;          /* player cards, moves panel   #111613 */
-  --k-popover: 24 30 27;        /* floating menus              #181e1b */
   --k-track: 58 53 45;          /* switch track (off)          #3a352d */
   --k-eval-black: 38 36 33;     /* evaluation bar, black side  #262421 */
   --k-eval-white: 244 244 244;  /* evaluation bar, white side  #f4f4f4 */
   --k-danger-strong: 226 87 76; /* destructive game actions    #e2574c */
-  --k-danger-deep: 143 29 29;   /* …their fill                 #8f1d1d */
-  --k-danger-ink: 246 211 205;  /* …their text                 #f6d3cd */
+
+  /* ══ Derived colours: full CSS colours (NOT triplets) computed from the base ones.
+        In CSS use them as `var(--k-primary-hi)`; with an alpha: `rgb(from var(--k-primary-hi) r g b / .4)`.
+        Tailwind names (`bg-primary-hi/30`) handle both. Needs relative colour syntax + color-mix
+        (Chrome/Edge 119, Safari 16.4, Firefox 128). Offsets were fitted to the former static palette
+        (max difference ΔE(oklab)×100 ≤ 1, most < 0.25). ═════════════════════════════════════════ */
+
+  /* Shades of a hue: oklch lightness offset, chroma factor, hue offset (degrees). */
+  --k-primary-hover: oklch(from rgb(var(--k-primary)) calc(l + 0.045) calc(c * 0.88) calc(h + 1));
+  --k-primary-hi: oklch(from rgb(var(--k-primary)) calc(l + 0.115) calc(c * 0.64) calc(h + 2));    /* light on the top / left edges */
+  --k-primary-lo: oklch(from rgb(var(--k-primary)) calc(l - 0.16) calc(c * 0.8) h);                /* shade on the bottom / right edges */
+  --k-secondary-hover: oklch(from rgb(var(--k-secondary)) calc(l + 0.08) calc(c * 1.14) calc(h - 2));
+  --k-secondary-hi: oklch(from rgb(var(--k-secondary)) calc(l + 0.215) calc(c * 1.2) calc(h - 9));
+  --k-secondary-lo: oklch(from rgb(var(--k-secondary)) calc(l - 0.14) calc(c * 0.74) calc(h + 5));
+  --k-danger-text: oklch(from rgb(var(--k-danger)) calc(l + 0.2) calc(c * 0.72) calc(h - 8));      /* readable red on dark surfaces */
+  --k-danger-deep: oklch(from rgb(var(--k-danger)) calc(l - 0.115) calc(c * 0.78) calc(h + 4));    /* fill of destructive game actions */
+  --k-danger-ink: oklch(from rgb(var(--k-danger)) calc(l + 0.355) calc(c * 0.2) calc(h + 7));      /* …their text */
+  --k-turn-text: oklch(from rgb(var(--k-turn)) calc(l + 0.135) calc(c * 1.06) calc(h + 1));        /* readable teal on dark panels */
+
+  /* Surfaces: the canvas lifted towards the text colour (percentage of fg in an oklab mix). */
+  --k-panel: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 2.7%);          /* player cards, moves panel */
+  --k-sunken: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 3.8%);         /* wells, dropdown panels */
+  --k-inactive: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 5.5%);       /* idle clock / muted banner */
+  --k-surface: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 7%);          /* cards, modals, inputs */
+  --k-popover: var(--k-surface);                                                        /* floating menus */
+  --k-surface-hover: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 14.1%); /* hovered rows / ghost hover */
+  --k-edge: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 18.8%);          /* hairlines inside surfaces */
+
+  /* Text: the body colour faded into the canvas. */
+  --k-muted: color-mix(in oklab, rgb(var(--k-fg)), rgb(var(--k-canvas)) 31.4%);         /* helper / meta text */
+  --k-subtle: color-mix(in oklab, rgb(var(--k-fg)), rgb(var(--k-canvas)) 49.9%);        /* hints, placeholders */
+
+  /* Gold-derived: the brand colour sunk into the canvas. */
+  --k-brand: color-mix(in oklab, rgb(var(--k-primary)), rgb(var(--k-canvas)) 67.9%);    /* dark-gold fills (callouts, tags) */
+  --k-line: color-mix(in oklab, rgb(var(--k-primary)), rgb(var(--k-canvas)) 40.3%);     /* main borders */
+  --k-line-hi: oklch(from var(--k-line) calc(l + 0.135) calc(c * 1.28) calc(h + 8));    /* …lit side (top / left) */
+  --k-line-lo: oklch(from var(--k-line) calc(l - 0.125) calc(c * 0.68) calc(h + 8));    /* …shaded side (bottom / right) */
+
   --k-game-border: rgb(var(--k-soft) / 0.16);  /* hairline around game panels */
   --k-radius-game: 6px;         /* the game screen uses squarer corners */
 

@@ -84,7 +84,7 @@
   .bell__footer { @apply block px-3.5 py-2.5 text-center border-t border-edge; }
 
   /* Notification rows — shared by the bell dropdown and /notifications */
-  .notif { @apply flex items-start gap-1 m-0 border-b border-[rgb(var(--k-edge))]; }
+  .notif { @apply flex items-start gap-1 m-0 border-b border-edge; }
   .notif.is-unread { @apply bg-primary/10 shadow-[inset_3px_0_0_rgb(var(--k-primary))]; }
   .notif__link { @apply flex flex-1 gap-2.5 px-3.5 py-2.5 text-fg hover:bg-white/5 hover:no-underline; }
   .notif__link .icon { @apply text-primary; }
@@ -136,7 +136,7 @@
   .pagination__list { @apply order-last flex w-full flex-wrap items-center justify-center gap-1 list-none m-0 p-0 sm:order-none sm:w-auto sm:flex-1; }
   .pagination__list li { @apply m-0; }
   .pagination__link {
-    @apply inline-flex items-center justify-center min-w-9 h-9 px-2 rounded-md bevel edged border text-fg hover:[--edge-hi:var(--k-primary-hi)] hover:[--edge-lo:var(--k-primary)] hover:text-primary hover:no-underline;
+    @apply inline-flex items-center justify-center min-w-9 h-9 px-2 rounded-md bevel edged border text-fg hover:[--edge-hi:var(--k-primary-hi)] hover:[--edge-lo:rgb(var(--k-primary))] hover:text-primary hover:no-underline;
   }
   .pagination__link.is-current { @apply bg-primary text-ink font-bold [--edge-hi:var(--k-primary-hi)] [--edge-lo:var(--k-primary-lo)]; }
   .pagination__ellipsis { @apply px-1 text-muted; }

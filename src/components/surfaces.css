@@ -48,16 +48,16 @@
   .tag--brand { @apply bg-brand text-fg; }            /* Bulma is-dark: black seat, "opponent's turn" */
   .tag--white { @apply bg-white text-black; }          /* white seat */
   .tag--light { @apply bg-fg text-brand; }
-  .tag--success { @apply bg-success text-ink; --edge-hi: 150 230 195; --edge-lo: 36 130 92; }
+  .tag--success { @apply bg-success text-ink; --edge-hi: rgb(150 230 195); --edge-lo: rgb(36 130 92); }
   .tag--danger { @apply bg-danger text-white; --edge-hi: var(--k-danger-text); --edge-lo: var(--k-danger-deep); }
-  .tag--info { @apply bg-info text-white; --edge-hi: 130 184 232; --edge-lo: 30 90 150; }
-  .tag--warning { @apply bg-warning text-ink; --edge-hi: 255 205 120; --edge-lo: 170 105 15; }
+  .tag--info { @apply bg-info text-white; --edge-hi: rgb(130 184 232); --edge-lo: rgb(30 90 150); }
+  .tag--warning { @apply bg-warning text-ink; --edge-hi: rgb(255 205 120); --edge-lo: rgb(170 105 15); }
   /* Soft = tinted background, readable on dark surfaces */
-  .tag--soft.tag--success { @apply bg-success/15 text-success; --edge-hi: var(--k-success); --edge-lo: var(--k-success); --edge-opacity: 0.4; }
-  .tag--soft.tag--danger { @apply bg-danger/15 text-danger-text; --edge-hi: var(--k-danger); --edge-lo: var(--k-danger); --edge-opacity: 0.4; }
-  .tag--soft.tag--info { @apply bg-info/15 text-info; --edge-hi: var(--k-info); --edge-lo: var(--k-info); --edge-opacity: 0.4; }
-  .tag--soft.tag--warning { @apply bg-warning/15 text-warning; --edge-hi: var(--k-warning); --edge-lo: var(--k-warning); --edge-opacity: 0.4; }
-  .tag--soft.tag--primary { @apply bg-primary/15 text-primary; --edge-hi: var(--k-primary); --edge-lo: var(--k-primary); --edge-opacity: 0.4; }
-  .tag--soft.tag--secondary { @apply bg-secondary/20 text-turn-text; --edge-hi: var(--k-secondary); --edge-lo: var(--k-secondary); --edge-opacity: 0.4; }
+  .tag--soft.tag--success { @apply bg-success/15 text-success; --edge-hi: rgb(var(--k-success)); --edge-lo: rgb(var(--k-success)); --edge-opacity: 0.4; }
+  .tag--soft.tag--danger { @apply bg-danger/15 text-danger-text; --edge-hi: rgb(var(--k-danger)); --edge-lo: rgb(var(--k-danger)); --edge-opacity: 0.4; }
+  .tag--soft.tag--info { @apply bg-info/15 text-info; --edge-hi: rgb(var(--k-info)); --edge-lo: rgb(var(--k-info)); --edge-opacity: 0.4; }
+  .tag--soft.tag--warning { @apply bg-warning/15 text-warning; --edge-hi: rgb(var(--k-warning)); --edge-lo: rgb(var(--k-warning)); --edge-opacity: 0.4; }
+  .tag--soft.tag--primary { @apply bg-primary/15 text-primary; --edge-hi: rgb(var(--k-primary)); --edge-lo: rgb(var(--k-primary)); --edge-opacity: 0.4; }
+  .tag--soft.tag--secondary { @apply bg-secondary/20 text-turn-text; --edge-hi: rgb(var(--k-secondary)); --edge-lo: rgb(var(--k-secondary)); --edge-opacity: 0.4; }
   .tag-group { @apply flex flex-wrap items-center gap-1.5; }
 }

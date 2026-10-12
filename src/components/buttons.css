@@ -8,7 +8,7 @@
   /* Lit edge: a 1px ring (drawn by ::before, so it follows the bevel) whose
      colour runs from --edge-hi at the top-left corner to --edge-lo at the
      bottom-right one ("to bottom right" keeps the whole top and left edges
-     light). Tint it with --edge-hi / --edge-lo (rgb triplets); fade it with
+     light). Tint it with --edge-hi / --edge-lo (full colours: `rgb(var(--k-success))` or a derived token); fade it with
      --edge-opacity. Not for <input>s (no pseudo-elements): they use border-line. */
   .edged { @apply relative; border-color: transparent; }
   .edged::before {
@@ -16,8 +16,8 @@
     border: 1px solid transparent; border-radius: inherit; corner-shape: inherit;
     opacity: var(--edge-opacity, 1);
     background: linear-gradient(to bottom right,
-      rgb(var(--edge-hi, var(--k-line-hi))) 0%, rgb(var(--edge-hi, var(--k-line-hi))) 30%,
-      rgb(var(--edge-lo, var(--k-line-lo))) 70%, rgb(var(--edge-lo, var(--k-line-lo))) 100%) border-box;
+      var(--edge-hi, var(--k-line-hi)) 0%, var(--edge-hi, var(--k-line-hi)) 30%,
+      var(--edge-lo, var(--k-line-lo)) 70%, var(--edge-lo, var(--k-line-lo)) 100%) border-box;
     -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
@@ -52,13 +52,13 @@
   .btn--outline { /* same as the default look; kept for existing markup */ }
   .btn--outline[aria-pressed="true"], .btn--outline.is-active { @apply bg-primary text-white hover:bg-primary-hover; }
   .btn--outline[aria-pressed="true"] .icon, .btn--outline.is-active .icon { @apply text-ink; }
-  .btn--light { @apply bg-fg text-brand hover:bg-fg/85; --edge-hi: 255 255 255; --edge-lo: 190 184 170; }
+  .btn--light { @apply bg-fg text-brand hover:bg-fg/85; --edge-hi: rgb(255 255 255); --edge-lo: rgb(190 184 170); }
   .btn--light .icon { @apply text-brand; }
   .btn--danger { @apply bg-danger text-white hover:bg-danger/85; --edge-hi: var(--k-danger-text); --edge-lo: var(--k-danger-deep); }
   .btn--danger .icon { @apply text-white; }
-  .btn--danger-soft { @apply bg-danger/15 text-danger-text hover:bg-danger/25; --edge-hi: var(--k-danger-strong); --edge-lo: var(--k-danger-deep); }
+  .btn--danger-soft { @apply bg-danger/15 text-danger-text hover:bg-danger/25; --edge-hi: rgb(var(--k-danger-strong)); --edge-lo: var(--k-danger-deep); }
   .btn--danger-soft .icon { @apply text-danger-text; }
-  .btn--info { @apply bg-info text-white hover:bg-info/85; --edge-hi: 130 184 232; --edge-lo: 30 90 150; }
+  .btn--info { @apply bg-info text-white hover:bg-info/85; --edge-hi: rgb(130 184 232); --edge-lo: rgb(30 90 150); }
   .btn--info .icon { @apply text-white; }
   .btn--text { @apply bg-transparent text-primary min-h-0 px-2 py-1 normal-case tracking-normal hover:bg-fg/10; filter: none; }
   .btn--text::before, .btn--static::before { display: none; }

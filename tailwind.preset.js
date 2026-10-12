@@ -6,7 +6,13 @@
  * Every value points at a CSS variable from src/tokens.css, so changing a
  * token re-themes both apps. Do not add raw hex colours to components.
  */
+// Base colours are RGB triplets: `rgb(var(--k-primary) / <alpha-value>)`.
 const rgb = (name) => `rgb(var(--k-${name}) / <alpha-value>)`;
+// Derived colours are full CSS colours computed in tokens.css (relative colour syntax / color-mix):
+// `rgb(from <colour> r g b / alpha)` turns them back into something an alpha value can be applied to.
+// A function (not an `<alpha-value>` string) so Tailwind never has to parse the `from` syntax itself.
+const derived = (name) => ({ opacityValue, opacityVariable }) =>
+  `rgb(from var(--k-${name}) r g b / ${opacityValue !== undefined ? opacityValue : `var(${opacityVariable}, 1)`})`;
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -24,26 +30,26 @@ module.exports = {
     extend: {
       colors: {
         canvas: rgb('canvas'),
-        sunken: rgb('sunken'),
-        inactive: rgb('inactive'),
-        surface: { DEFAULT: rgb('surface'), hover: rgb('surface-hover') },
-        line: { DEFAULT: rgb('line'), hi: rgb('line-hi'), lo: rgb('line-lo') },
-        edge: rgb('edge'),
+        sunken: derived('sunken'),
+        inactive: derived('inactive'),
+        surface: { DEFAULT: derived('surface'), hover: derived('surface-hover') },
+        line: { DEFAULT: derived('line'), hi: derived('line-hi'), lo: derived('line-lo') },
+        edge: derived('edge'),
         fg: rgb('fg'),
         soft: rgb('soft'),
-        muted: rgb('muted'),
-        subtle: rgb('subtle'),
+        muted: derived('muted'),
+        subtle: derived('subtle'),
         ink: rgb('ink'),
-        primary: { DEFAULT: rgb('primary'), hover: rgb('primary-hover'), hi: rgb('primary-hi'), lo: rgb('primary-lo') },
-        secondary: { DEFAULT: rgb('secondary'), hover: rgb('secondary-hover'), hi: rgb('secondary-hi'), lo: rgb('secondary-lo') },
-        brand: rgb('brand'),
+        primary: { DEFAULT: rgb('primary'), hover: derived('primary-hover'), hi: derived('primary-hi'), lo: derived('primary-lo') },
+        secondary: { DEFAULT: rgb('secondary'), hover: derived('secondary-hover'), hi: derived('secondary-hi'), lo: derived('secondary-lo') },
+        brand: derived('brand'),
         success: rgb('success'),
-        danger: { DEFAULT: rgb('danger'), text: rgb('danger-text') },
+        danger: { DEFAULT: rgb('danger'), text: derived('danger-text') },
         warning: rgb('warning'),
         info: rgb('info'),
-        turn: { DEFAULT: rgb('turn'), text: rgb('turn-text') },
-        panel: rgb('panel'),
-        popover: rgb('popover'),
+        turn: { DEFAULT: rgb('turn'), text: derived('turn-text') },
+        panel: derived('panel'),
+        popover: derived('popover'),
         tile: { dark: rgb('tile-dark'), light: rgb('tile-light'), stroke: rgb('tile-stroke') },
         piece: { light: rgb('piece-light'), dark: rgb('piece-dark') },
         // Legacy aliases used by the Hugo templates (bg-keres-primary …).
@@ -51,9 +57,9 @@ module.exports = {
           primary: rgb('primary'),
           secondary: rgb('soft'),
           light: rgb('fg'),
-          dark: rgb('brand'),
+          dark: derived('brand'),
           bg: rgb('canvas'),
-          surface: rgb('surface'),
+          surface: derived('surface'),
         },
       },
       fontFamily: {

@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="/keres.css">
   <style>
     /* Style-guide chrome only — never part of the design system. */
-    .sg-demo { border: 1px dashed rgb(var(--k-line)); border-radius: .75rem; padding: 1.25rem; margin: .75rem 0 2rem; }
+    .sg-demo { border: 1px dashed var(--k-line); border-radius: .75rem; padding: 1.25rem; margin: .75rem 0 2rem; }
     .sg-demo--bare { padding: 0; overflow: hidden; }
-    .sg-label { font: 600 .7rem/1 var(--k-font-sans); letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--k-subtle)); margin: 1.5rem 0 .25rem; }
-    .sg-code { font: .8rem var(--k-font-mono); color: rgb(var(--k-soft)); background: rgb(var(--k-sunken)); border: 1px solid rgb(var(--k-edge)); border-radius: .4rem; padding: .15rem .4rem; }
-    .sg-nav a { display: block; padding: .3rem .75rem; font-size: .9rem; color: rgb(var(--k-muted)); border-radius: .4rem; }
+    .sg-label { font: 600 .7rem/1 var(--k-font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--k-subtle); margin: 1.5rem 0 .25rem; }
+    .sg-code { font: .8rem var(--k-font-mono); color: rgb(var(--k-soft)); background: var(--k-sunken); border: 1px solid var(--k-edge); border-radius: .4rem; padding: .15rem .4rem; }
+    .sg-nav a { display: block; padding: .3rem .75rem; font-size: .9rem; color: var(--k-muted); border-radius: .4rem; }
     .sg-nav a:hover { color: rgb(var(--k-fg)); background: rgb(255 255 255 / .05); text-decoration: none; }
-    .sg-nav b { display: block; margin: 1rem .75rem .25rem; font: 600 .65rem/1 var(--k-font-sans); letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--k-subtle)); }
+    .sg-nav b { display: block; margin: 1rem .75rem .25rem; font: 600 .65rem/1 var(--k-font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--k-subtle); }
     .sg h2.sg-h2 { font-size: 2.25rem; margin: 0 0 .25rem; padding-top: 3rem; }
     .sg h3.sg-h3 { font-size: 1.4rem; margin: 2rem 0 .25rem; color: rgb(var(--k-primary)); }
-    .sg-lede { color: rgb(var(--k-muted)); max-width: 70ch; font-size: 1rem; margin-bottom: 1rem; }
+    .sg-lede { color: var(--k-muted); max-width: 70ch; font-size: 1rem; margin-bottom: 1rem; }
     .sg-swatch { position: relative; height: 4rem; border-radius: .5rem; border: 1px solid rgb(255 255 255 / .12); cursor: pointer; }
     .sg-swatch input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
     .sg-swatch:hover { border-color: rgb(255 255 255 / .45); }
@@ -296,7 +296,7 @@
       </div>
       <div class="card">
         <div class="flex flex-wrap items-center gap-4">
-          <img class="avatar avatar--lg" src="/images/pieces/king.svg" alt="" style="background:rgb(var(--k-brand));padding:.5rem">
+          <img class="avatar avatar--lg" src="/images/pieces/king.svg" alt="" style="background:var(--k-brand);padding:.5rem">
           <div class="min-w-0 flex-1">
             <h1 class="page-title !mb-0 !text-3xl">Magnus <span class="tag tag--soft tag--success ml-2">Online</span></h1>
             <p class="mb-0 text-muted">@magnus · Member since March 2026</p>
@@ -612,7 +612,7 @@
 
       <p class="sg-label">Option badges · feedback banner</p>
       <div class="game-info__badges !justify-start"><span class="tag tag--soft tag--info">Rated</span><span class="tag">3+2</span><span class="tag">Real time</span></div>
-      <button class="feedback-banner !mt-4 !mb-0"><img class="feedback-banner__avatar" src="/logo.svg" alt="" style="padding:.6rem;background:rgb(var(--k-brand))"><span class="feedback-banner__text"><span class="feedback-banner__title">Help us improve Keres</span><span class="feedback-banner__subtitle">Found a bug or have an idea?</span></span><span class="feedback-banner__cta">Send feedback<svg width="14" height="14"><use href="#i-arrow"/></svg></span></button>
+      <button class="feedback-banner !mt-4 !mb-0"><img class="feedback-banner__avatar" src="/logo.svg" alt="" style="padding:.6rem;background:var(--k-brand)"><span class="feedback-banner__text"><span class="feedback-banner__title">Help us improve Keres</span><span class="feedback-banner__subtitle">Found a bug or have an idea?</span></span><span class="feedback-banner__cta">Send feedback<svg width="14" height="14"><use href="#i-arrow"/></svg></span></button>
     </div>
 
     <h2 class="sg-h2" id="pieces">Pieces &amp; rules</h2>
@@ -788,46 +788,29 @@
 </div>
 
 <script>
-  // Live colour editing: every swatch gets a colour picker that rewrites its --k-* token on :root.
+  // Live colour editing: the swatches of BASE colours get a colour picker that rewrites their --k-* token on :root;
+  // the swatches of DERIVED colours (computed in tokens.css) just follow and show the resulting hex.
   // Nothing is persisted — reload to reset.
-  // Variants are the base colour shifted in HSL: [token, lightness delta, saturation delta].
-  const DERIVED = {
-    primary: [['primary-hover', .07, 0], ['primary-hi', .18, 0], ['primary-lo', -.17, 0]],
-    secondary: [['secondary-hover', .07, 0], ['secondary-hi', .27, 0], ['secondary-lo', -.17, 0]],
-    line: [['line-hi', .1, 0], ['line-lo', -.1, 0]],
-    surface: [['surface-hover', .05, 0]],
-  };
-  const shift = (h, dl, ds) => {
-    let [r, g, b] = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
-    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn; let H = 0, S = 0, L = (mx + mn) / 2;
-    if (d) { S = d / (1 - Math.abs(2 * L - 1)); H = mx === r ? ((g - b) / d + 6) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; }
-    L = Math.min(1, Math.max(0, L + dl)); S = Math.min(1, Math.max(0, S + ds));
-    const C = (1 - Math.abs(2 * L - 1)) * S, X = C * (1 - Math.abs(H % 2 - 1)), m = L - C / 2;
-    const [R, G, B] = [[C, X, 0], [X, C, 0], [0, C, X], [0, X, C], [X, 0, C], [C, 0, X]][Math.floor(H) % 6];
-    return '#' + [R, G, B].map(v => Math.round((v + m) * 255).toString(16).padStart(2, '0')).join('');
-  };
-  const inputs = {};
-  const hex = t => '#' + t.trim().split(/\s+/).map(n => (+n).toString(16).padStart(2, '0')).join('');
-  document.querySelectorAll('.sg-swatch').forEach(sw => {
-    const cls = [...sw.classList].find(c => c.startsWith('bg-')); if (!cls) return;
-    const name = '--k-' + cls.slice(3), label = sw.parentElement.querySelector('.text-muted');
-    const input = document.createElement('input'); input.type = 'color'; input.title = name;
-    input.value = hex(getComputedStyle(document.documentElement).getPropertyValue(name));
-    const apply = v => {
-      document.documentElement.style.setProperty(name, [1, 3, 5].map(i => parseInt(v.slice(i, i + 2), 16)).join(' '));
-      if (label) label.textContent = label.textContent.replace(/^#[0-9a-f]{3,6}/i, v);
-      input.value = v;
-    };
+  const root = document.documentElement;
+  const swatches = [...document.querySelectorAll('.sg-swatch')].map(sw => {
+    const cls = [...sw.classList].find(c => c.startsWith('bg-'));
+    return cls ? { sw, name: '--k-' + cls.slice(3), label: sw.parentElement.querySelector('.text-muted') } : null;
+  }).filter(Boolean);
+  const px = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  const toHex = css => { px.clearRect(0, 0, 1, 1); px.fillStyle = '#000'; px.fillStyle = css; px.fillRect(0, 0, 1, 1); return '#' + [...px.getImageData(0, 0, 1, 1).data].slice(0, 3).map(n => n.toString(16).padStart(2, '0')).join(''); };
+  const showHex = () => swatches.forEach(({ sw, label }) => { if (label) label.textContent = label.textContent.replace(/^(#[0-9a-f]{3,6})?/i, toHex(getComputedStyle(sw).backgroundColor)); });
+  const isBase = name => /^\d+ \d+ \d+$/.test(getComputedStyle(root).getPropertyValue(name).trim());
+  swatches.forEach(({ sw, name }) => {
+    if (!isBase(name)) { sw.title = name + ' (derived)'; sw.style.cursor = 'default'; return; }
+    const input = document.createElement('input'); input.type = 'color'; input.title = name + ' (base: edit me)';
+    input.value = toHex(`rgb(${getComputedStyle(root).getPropertyValue(name).trim().replace(/ /g, ',')})`);
     input.addEventListener('input', () => {
-      apply(input.value);
-      // Derived tokens follow their base colour (they can still be tweaked afterwards).
-      (DERIVED[name.slice(4)] || []).forEach(([variant, dl, ds]) => {
-        const t = inputs['--k-' + variant]; if (t) t.apply(shift(input.value, dl, ds));
-      });
+      root.style.setProperty(name, [1, 3, 5].map(i => parseInt(input.value.slice(i, i + 2), 16)).join(' '));
+      showHex();
     });
-    inputs[name] = { apply };
     sw.appendChild(input);
   });
+  showHex();
   // Style-guide behaviour only. The apps ship their own TypeScript for these widgets;
   // the contract is the same: toggle `.is-active` (modal, lightbox, burger/menu) or `aria-*`/`hidden`.
   document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.open).classList.add('is-active')));

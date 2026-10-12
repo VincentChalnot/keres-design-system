@@ -78,8 +78,8 @@
     --tw-prose-headings: rgb(var(--k-fg));
     --tw-prose-links: rgb(var(--k-primary));
     --tw-prose-bold: rgb(var(--k-soft));
-    --tw-prose-bullets: rgb(var(--k-line));
-    --tw-prose-hr: rgb(var(--k-line));
+    --tw-prose-bullets: var(--k-line);
+    --tw-prose-hr: var(--k-line);
     --tw-prose-quotes: rgb(var(--k-soft));
     --tw-prose-quote-borders: rgb(var(--k-primary));
   }
