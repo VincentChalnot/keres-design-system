@@ -12,7 +12,7 @@ createServer(async (req, res) => {
   let file = join(base, path);
   if (!file.startsWith(base)) { res.writeHead(403).end(); return; }
   try { if ((await stat(file)).isDirectory()) file = join(file, 'index.html'); } catch {}
-  try {
-    res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream' }).end(await readFile(file));
-  } catch { res.writeHead(404).end('Not found'); }
+  let body;
+  try { body = await readFile(file); } catch { res.writeHead(404).end('Not found'); return; }
+  res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream' }).end(body);
 }).listen(Number(port), () => console.log(`Style guide: http://localhost:${port}`));
