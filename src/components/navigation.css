@@ -48,7 +48,7 @@
   .navbar__icon { @apply inline-flex items-center justify-center w-6 h-6 text-[1.1rem] shrink-0; }
   .navbar__icon.is-mobile-only, .is-mobile-only { @apply lg:hidden; }
   /* Mobile: buttons become plain rows so they line up with links */
-  .navbar__menu .btn.navbar__link { @apply h-auto w-full justify-start rounded-none border-0 bg-transparent text-fg text-base px-4 py-3 hover:bg-transparent hover:text-primary lg:text-sm lg:w-auto lg:rounded-sm lg:border lg:px-3.5 lg:py-1 lg:h-8 normal-case tracking-normal; min-width: 0; }
+  .navbar__menu .btn.navbar__link { @apply min-h-0 h-auto w-full justify-start rounded-none border-0 bg-transparent text-fg text-base px-4 py-3 hover:bg-transparent hover:text-primary lg:text-sm lg:w-auto lg:rounded-sm lg:border lg:px-3.5 lg:py-1 lg:h-8 lg:whitespace-nowrap normal-case tracking-normal; min-width: 0; }
   .navbar__menu .btn.navbar__link::before { @apply max-lg:hidden; }
   .navbar__menu .btn.navbar__link.navbar__play { @apply text-primary lg:bg-primary lg:text-white lg:hover:text-white lg:hover:bg-primary-hover; }
   .navbar__menu .btn.navbar__link .icon { @apply mx-0; }
@@ -114,6 +114,16 @@
     @apply flex items-center gap-2 rounded-md bevel px-3 py-2 text-fg hover:bg-white/5 hover:no-underline;
   }
   .menu__link.is-active, .menu__link[aria-current="page"] { @apply bg-primary text-ink; }
+  /* Collapsible below lg: <aside class="menu menu--collapsible"><button class="menu__toggle" aria-expanded="false">…</button><ul class="menu__list">.
+     The page script toggles `.is-open` on .menu (and aria-expanded); from lg up the toggle is hidden and the list always shown. */
+  .menu__toggle {
+    @apply flex w-full items-center justify-between gap-2 rounded-md bevel edged border bg-sunken px-3 py-2 text-fg cursor-pointer lg:hidden;
+  }
+  .menu__toggle .icon { @apply transition-transform duration-150; }
+  .menu--collapsible.is-open .menu__toggle .icon { @apply rotate-180; }
+  .menu--collapsible > .menu__list { @apply max-lg:hidden max-lg:mt-2; }
+  .menu--collapsible.is-open > .menu__list { @apply max-lg:flex; }
+  .menu--collapsible > .menu__label { @apply max-lg:hidden; }
 
   /* ── Pagination ───────────────────────────────────────────────────────── */
   .pagination { @apply flex flex-wrap items-center justify-between gap-2 my-4 text-sm; }

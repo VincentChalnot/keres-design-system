@@ -223,8 +223,8 @@
         <button class="btn-close" aria-label="Close"></button>
       </div>
       <div class="mt-3 max-w-sm"><a class="btn btn--light btn--block" href="#buttons"><svg class="icon"><use href="#i-link"/></svg>Continue with Google</a></div>
-      <p class="sg-label">Long label that may wrap (<span class="sg-code">btn--wrap</span>), here in a 16rem box</p>
-      <div class="max-w-[16rem]"><a class="btn btn--outline btn--sm btn--wrap" href="#buttons"><svg class="icon"><use href="#i-board"/></svg><span>Play the AI or hot-seat without an account</span></a></div>
+      <p class="sg-label">Labels wrap by default (here in a 16rem box); <span class="sg-code">btn--nowrap</span> keeps one line</p>
+      <div class="max-w-[16rem]"><a class="btn btn--outline btn--sm" href="#buttons"><svg class="icon"><use href="#i-board"/></svg><span>Play the AI or hot-seat without an account</span></a></div>
     </div>
 
     <!-- ═══════════════════════════ FORMS ═══════════════════════════ -->
@@ -467,6 +467,12 @@
             <li><a class="menu__link" href="#nav-misc"><svg class="icon"><use href="#i-board"/></svg><span>Games</span></a></li>
             <li><a class="menu__link" href="#nav-misc"><svg class="icon"><use href="#i-shield"/></svg><span>Privacy</span></a></li>
           </ul></aside>
+      </div>
+      <p class="sg-label">Collapsible side menu (collapsed below 1024px behind a toggle; the app script toggles <span class="sg-code">.is-open</span>)</p>
+      <div class="max-w-xs">
+        <aside class="menu menu--collapsible"><button type="button" class="menu__toggle" data-menu-toggle aria-expanded="false"><span>Admin · Users</span><span class="icon"><svg class="w-full h-full"><use href="#i-arrow"/></svg></span></button>
+          <p class="menu__label">Admin</p>
+          <ul class="menu__list"><li><a class="menu__link" href="#nav-misc"><svg class="icon"><use href="#i-chart"/></svg><span>Dashboard</span></a></li><li><a class="menu__link is-active" href="#nav-misc"><svg class="icon"><use href="#i-users"/></svg><span>Users</span></a></li></ul></aside>
       </div>
       <p class="sg-label">Pagination — datagrid</p>
       <nav class="pagination" aria-label="pagination">
@@ -715,6 +721,62 @@
       <div class="card"><h3 class="card__title">Statistics</h3><div class="stat-row"><div class="stat"><p class="stat__label">Wins</p><p class="stat__value">128</p></div><div class="stat"><p class="stat__label">Losses</p><p class="stat__value">94</p></div><div class="stat"><p class="stat__label">Draws</p><p class="stat__value">12</p></div></div><hr class="announcements__rule"><h4 class="card__title card__title--sm">Announcements</h4><div class="announcements"><ul class="announcements__list"><li class="announcements__item"><time class="announcements__date">Oct 8, 2026</time><p class="announcements__heading">Tournament weekend</p><p class="announcements__body">Join us on Saturday.</p></li></ul></div></div>
     </div></div>
 
+    <h3 class="sg-h3">Lobby (new seek, open seeks)</h3>
+    <div class="sg-demo">
+      <div class="card"><h4 class="card__title">New seek</h4>
+        <div class="field"><span class="label">Format</span>
+          <div class="btn-group">
+            <button class="btn btn--outline btn--stack" aria-pressed="false"><span>Bullet</span><span class="btn__value">3+2</span></button>
+            <button class="btn btn--outline btn--stack" aria-pressed="false"><span>Blitz</span><span class="btn__value">7+5</span></button>
+            <button class="btn btn--outline btn--stack" aria-pressed="true"><span>Rapid</span><span class="btn__value">20+10</span></button>
+            <button class="btn btn--outline btn--stack" aria-pressed="false"><span>Correspondence</span><span class="btn__value">24h / move</span></button>
+          </div>
+          <p class="help">A format fills in the form below. Adjust anything, then post your seek.</p></div>
+        <div class="grid grid-cols-1 gap-x-4 md:grid-cols-3">
+          <div class="field"><label class="label">Time control</label><select class="select"><option>Real-time</option></select></div>
+          <div class="field"><label class="label">Initial time (minutes)</label><input class="input" value="20"></div>
+          <div class="field"><label class="label">Increment (seconds)</label><input class="input" value="10"></div>
+        </div>
+        <div class="btn-group"><button class="btn btn--primary">Post seek</button><button class="btn btn--outline">Invite a friend</button></div>
+      </div>
+      <div class="card !mb-0"><h4 class="card__title">Open seeks <span class="text-muted">(2 waiting)</span></h4>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Player</th><th>Time control</th><th>Rated</th><th>Colour</th><th></th></tr></thead>
+          <tbody><tr><td>Ada <span class="text-muted">(1612)</span></td><td>3+2</td><td>Rated</td><td>Random</td><td class="text-right"><button class="btn btn--primary btn--sm">Play</button></td></tr>
+          <tr><td>You</td><td>10+5</td><td>Casual</td><td>White</td><td class="text-right"><button class="btn btn--danger-soft btn--sm">Cancel</button></td></tr></tbody></table></div></div>
+    </div>
+
+    <h3 class="sg-h3">Settings (board &amp; gameplay, blocked users)</h3>
+    <div class="sg-demo"><div class="grid grid-cols-1 gap-6 md:grid-cols-[14rem_minmax(0,1fr)]">
+      <aside class="menu"><ul class="menu__list">
+        <li><a class="menu__link" href="#pages"><svg class="icon"><use href="#i-user"/></svg>Profile</a></li>
+        <li><a class="menu__link is-active" href="#pages"><svg class="icon"><use href="#i-board"/></svg>Board &amp; gameplay</a></li></ul></aside>
+      <div class="min-w-0">
+        <div class="card"><h4 class="card__title">Board &amp; gameplay</h4>
+          <p class="text-muted">How the board opens in your games.</p>
+          <div class="field"><label class="checkbox"><input type="checkbox" checked> Show board coordinates</label></div>
+          <div class="field"><label class="checkbox"><input type="checkbox"> Turn the opponent’s pieces upside down</label></div>
+          <div class="field"><p class="label">Piece movement</p><div class="radios"><label class="radio"><input type="radio" name="sg-speed"> Instant</label><label class="radio"><input type="radio" name="sg-speed" checked> Fast</label><label class="radio"><input type="radio" name="sg-speed"> Slow</label></div><p class="help">How fast pieces slide to their square.</p></div>
+          <div class="mt-6"><button class="btn btn--primary">Save changes</button></div></div>
+        <div class="card !mb-0"><h4 class="card__title card__title--sm">Blocked users</h4>
+          <ul class="friend-list"><li class="friend-row"><a href="#pages">grace</a><button class="btn btn--outline btn--sm">Unblock</button></li></ul></div>
+      </div></div></div>
+
+    <h3 class="sg-h3">Admin datagrid (filters, toolbar, pager, table)</h3>
+    <div class="sg-demo"><div class="card !mb-0">
+      <div class="grid grid-cols-1 gap-x-4 md:grid-cols-2 xl:grid-cols-3">
+        <div><div class="field"><label class="label">Email</label><input class="input"></div></div>
+        <div><div class="field"><label class="label">Created at</label>
+          <div class="input-group"><input class="input !px-2 text-sm" type="date"><span class="btn btn--static min-w-0">to</span><input class="input !px-2 text-sm" type="date"></div></div></div>
+        <div><div class="field"><label class="label">Result</label><select class="select"><option></option></select></div></div>
+      </div>
+      <div class="toolbar"><div class="toolbar__group"><span class="tag tag--white tag--lg">Displaying 15 of 318 results</span></div>
+        <div class="toolbar__group"><div class="btn-group"><button class="btn btn--outline btn--sm">Reset</button><button class="btn btn--primary btn--sm">Submit</button></div></div></div>
+      <nav class="pagination" aria-label="pagination"><a class="pagination__prev is-disabled" disabled>Previous</a><a class="pagination__next" href="#pages">Next</a>
+        <ul class="pagination__list"><li><a class="pagination__link is-current" href="#pages">1</a></li><li><a class="pagination__link" href="#pages">2</a></li><li><a class="pagination__link" href="#pages">3</a></li><li><span class="pagination__ellipsis">…</span></li><li><a class="pagination__link" href="#pages">22</a></li></ul></nav>
+      <div class="table-wrap"><table class="table table--hover table--compact whitespace-nowrap"><thead><tr><th>#</th><th>Players</th><th>Result</th><th>Rated</th></tr></thead>
+        <tbody><tr><td><a class="font-semibold" href="#pages">325</a></td><td><span class="inline-flex items-center gap-1.5"><span class="tag tag--white">W</span>Engine L1 <span class="text-subtle">vs</span> <span class="tag tag--brand">B</span>ada</span></td><td><span class="tag tag--soft tag--success">1-0</span></td><td><span class="tag tag--soft tag--info">Rated</span></td></tr></tbody></table></div>
+    </div></div>
+
     <h3 class="sg-h3">Admin dashboard</h3>
     <div class="sg-demo"><div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div class="card stat !mb-0"><p class="stat__label">Total players</p><p class="stat__value">1 248</p></div>
@@ -778,6 +840,7 @@
     b.classList.toggle('is-active', open); b.setAttribute('aria-expanded', open);
     b.closest('.navbar__inner').querySelector('.navbar__menu').classList.toggle('is-active', open);
   }));
+  document.querySelectorAll('[data-menu-toggle]').forEach(b => b.addEventListener('click', () => { const m = b.closest('.menu'); const open = !m.classList.contains('is-open'); m.classList.toggle('is-open', open); b.setAttribute('aria-expanded', open); }));
   document.querySelectorAll('[data-collapse]').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.collapse).classList.toggle('is-collapsed')));
   const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img');
   document.querySelectorAll('[data-lightbox]').forEach(t => t.addEventListener('click', e => { e.preventDefault(); lbImg.src = t.href; lb.classList.add('is-active'); }));

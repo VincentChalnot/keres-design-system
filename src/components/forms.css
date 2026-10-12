@@ -46,7 +46,7 @@
   .input-group > .input, .input-group > .select { @apply w-auto flex-1 min-w-0 focus:relative focus:z-10; }
   .input-group > :first-child { @apply rounded-l-md; }
   .input-group > :last-child { @apply rounded-r-md; }
-  .input-group > .btn { @apply h-10; }
+  .input-group > .btn { @apply h-10 min-h-0 py-0; }
 
   /* Horizontal form row (label left, controls right) */
   .field-row { @apply grid gap-2 md:grid-cols-[10rem_1fr] md:items-center mb-4; }

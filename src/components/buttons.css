@@ -1,7 +1,7 @@
 /*
  * Buttons.   <a|button class="btn btn--primary">
  * Default look = gold edge/icon, dark fill, white text. Variants: --primary --secondary --outline --light --danger --danger-soft --info --text --static
- * Sizes:    --sm  --lg      Layout: --block  --wrap (label may wrap)   Group: .btn-group (wraps) / .btn-group--joined
+ * Sizes:    --sm  --lg      Layout: --block  --nowrap (a label that must stay on one line; labels wrap by default)   Group: .btn-group (wraps) / .btn-group--joined
  * Toggle:   .btn--outline[aria-pressed="true"] looks like --primary (lobby presets, board toggles)
  */
 @layer components {
@@ -27,8 +27,8 @@
   /* Default button: gold edge + icon, dark fill, white text. */
   .btn {
     --edge-hi: var(--k-primary-hi); --edge-lo: var(--k-primary-lo);
-    @apply edged bevel inline-flex items-center justify-start gap-3 select-none whitespace-nowrap cursor-pointer;
-    @apply h-11 px-4 rounded-md border bg-sunken text-white text-[0.95rem] font-medium uppercase tracking-[0.12em] leading-none;
+    @apply edged bevel inline-flex items-center justify-start gap-3 select-none cursor-pointer;
+    @apply min-h-11 px-4 py-2 rounded-md border bg-sunken text-white text-[0.95rem] font-medium uppercase tracking-[0.12em] leading-snug;
     @apply transition-[background-color,border-color,filter] duration-150 no-underline;
     @apply hover:no-underline hover:bg-surface-hover;
     max-width: 100%;
@@ -60,26 +60,25 @@
   .btn--danger-soft .icon { @apply text-danger-text; }
   .btn--info { @apply bg-info text-white hover:bg-info/85; --edge-hi: 130 184 232; --edge-lo: 30 90 150; }
   .btn--info .icon { @apply text-white; }
-  .btn--text { @apply bg-transparent text-primary h-auto px-2 py-1 normal-case tracking-normal hover:bg-fg/10; filter: none; }
+  .btn--text { @apply bg-transparent text-primary min-h-0 px-2 py-1 normal-case tracking-normal hover:bg-fg/10; filter: none; }
   .btn--text::before, .btn--static::before { display: none; }
   .btn--text:hover { filter: none; }
   .btn--static { @apply bg-surface text-muted border-edge pointer-events-none; }
   .btn--static .icon { @apply text-muted; }
 
-  .btn--sm { @apply h-8 px-3 text-xs gap-2 rounded-sm; min-width: 0; }
+  .btn--sm { @apply min-h-8 px-3 py-1.5 text-xs gap-2 rounded-sm; min-width: 0; }
   .btn--sm .icon { @apply mx-0.5; }
-  .btn--lg { @apply h-14 px-8 text-base; }
+  .btn--lg { @apply min-h-14 px-8 text-base; }
   .btn--block { @apply flex w-full; }
-  /* Long labels (translations): wrap instead of overflowing a narrow screen. */
-  .btn--wrap { @apply h-auto min-h-11 whitespace-normal py-2 leading-snug; }
-  .btn--wrap.btn--sm { @apply min-h-8 py-1.5; }
+  /* Labels wrap by default (translations can be longer than a phone is wide); this opts out. */
+  .btn--nowrap { @apply whitespace-nowrap; }
   .btn--square { @apply rounded-sm; }
   .btn--icon { @apply px-0 w-11 justify-center; min-width: 0; }
   .btn--icon .icon { @apply mx-0; }
   .btn--icon.btn--sm { @apply w-8; }
   .btn--text { min-width: 0; }
 
-  .btn--stack { @apply flex-col justify-center gap-0.5 h-auto py-2 leading-tight normal-case tracking-normal; min-width: 7.5rem; }
+  .btn--stack { @apply flex-col justify-center gap-0.5 min-h-0 py-2 leading-tight normal-case tracking-normal; min-width: 7.5rem; }
   .btn__value { @apply text-[0.8em] opacity-80 tabular; }
 
   .icon { @apply inline-flex items-center justify-center w-[1.5em] h-[1.5em] shrink-0; }
