@@ -1,5 +1,5 @@
 {
-  "name": "@keres/design-system",
+  "name": "@vchalnot/keres-design-system",
   "version": "0.4.0",
   "description": "Shared Tailwind design system for the Keres website (Hugo) and platform (Symfony/Vite)",
   "license": "SEE LICENSE IN LICENSE",
