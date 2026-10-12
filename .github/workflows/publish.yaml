@@ -1,8 +1,8 @@
 name: Publish to npm
 
-# Runs when a version tag is pushed (git tag -a v0.4.0 -m v0.4.0 && git push --follow-tags).
+# Runs when a version tag is pushed (`npm version patch|minor|major && git push --follow-tags`, see RELEASING.md).
 # Uses npm Trusted Publishing (OIDC): no NPM_TOKEN. Configure the package on npmjs.com
-# (Settings > Trusted Publisher > GitHub Actions: this repository, workflow file publish.yaml).
+# (Settings > Trusted Publisher > GitHub Actions: this repository, workflow file publish.yaml, no environment).
 on:
   push:
     tags:
@@ -30,12 +30,22 @@ jobs:
         run: |
           [ "v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME" ] || { echo "tag $GITHUB_REF_NAME != package.json version"; exit 1; }
 
-      - run: npm ci
+      - name: Already on npm? Then there is nothing to do (a published version can never be reused)
+        id: published
+        run: |
+          v="$(node -p "require('./package.json').version")"
+          if npm view "$(node -p "require('./package.json').name")@$v" version >/dev/null 2>&1; then echo "exists=true" >> "$GITHUB_OUTPUT"; echo "::notice::$v is already published, skipping"; else echo "exists=false" >> "$GITHUB_OUTPUT"; fi
+
+      - if: steps.published.outputs.exists != 'true'
+        run: npm ci
 
       - name: The style sheet must build
+        if: steps.published.outputs.exists != 'true'
         run: npm run build
 
       - name: Package contents
+        if: steps.published.outputs.exists != 'true'
         run: npm pack --dry-run
 
-      - run: npm publish --provenance --access public
+      - if: steps.published.outputs.exists != 'true'
+        run: npm publish --provenance --access public

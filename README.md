@@ -41,7 +41,7 @@ Proprietary with a conditional AGPL-3.0 grant, identical to the Keres platform: 
 ## Publishing to npm
 
 `package.json` is publish-ready (`@vchalnot/keres-design-system`, `files`, `exports`, `publishConfig.access: public`; provenance is added by the CI workflow only).
-`.github/workflows/publish.yaml` publishes on a pushed `vX.Y.Z` tag using npm Trusted Publishing (GitHub OIDC, no
+See [RELEASING.md](RELEASING.md) for the release steps. `.github/workflows/publish.yaml` publishes on a pushed `vX.Y.Z` tag using npm Trusted Publishing (GitHub OIDC, no
 token or secret): it checks the tag equals `version`, builds, then `npm publish --provenance --access public`. The
 package must first be linked to this repo and workflow in its npm settings (Trusted Publisher). Check the tarball
 locally with `npm pack --dry-run`.
