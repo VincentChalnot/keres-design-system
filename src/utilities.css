@@ -1,5 +1,13 @@
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .tabular { font-variant-numeric: tabular-nums; }
-  .overflow-wrap-anywhere { overflow-wrap: anywhere; }
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .tabular {
+        font-variant-numeric: tabular-nums;
+    }
+
+    .overflow-wrap-anywhere {
+        overflow-wrap: anywhere;
+    }
 }

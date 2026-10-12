@@ -13,28 +13,47 @@
  * Opening tree: .tree (data.css) — nested <ul><li><a>move</a> <span class="tag tag--sm">eval</span><ul>…
  */
 @layer components {
-  .board-editor__board {
-    --board-aspect: 1.2252;
-    --board-min-width: 320px;
-    --board-max-height: calc(100dvh - var(--k-navbar-h) - 2rem);
-    @apply sticky;
-    width: min(100%, max(var(--board-min-width), calc(var(--board-max-height) * var(--board-aspect))));
-    top: calc(var(--k-navbar-h) + 1rem);
-  }
-  .board-editor__board svg { @apply block w-full h-auto; }
+    .board-editor__board {
+        --board-aspect: 1.2252;
+        --board-min-width: 320px;
+        --board-max-height: calc(100dvh - var(--k-navbar-h) - 2rem);
+        @apply sticky;
+        width: min(100%, max(var(--board-min-width), calc(var(--board-max-height) * var(--board-aspect))));
+        top: calc(var(--k-navbar-h) + 1rem);
+    }
 
-  .board-editor__group + .board-editor__group { @apply mt-2; }
-  .board-editor__row { @apply grid grid-cols-8 gap-1; }
+    .board-editor__board svg {
+        @apply block w-full h-auto;
+    }
 
-  /* White pieces sit on the board's dark tile colour, Black ones on the light one: both read well. */
-  .board-editor__tool {
-    @apply cursor-pointer rounded-[4px] border-2 border-transparent bg-tile-dark p-[0.2rem] leading-[0] text-inherit;
-  }
-  .board-editor__tool svg { @apply block w-full h-auto; }
-  .board-editor__row--black > .board-editor__tool { @apply bg-tile-light; }
-  .board-editor__tool[aria-pressed="true"] { @apply border-turn; box-shadow: 0 0 0 2px rgb(var(--k-turn) / 0.45); }
-  .board-editor__tool--eraser {
-    @apply inline-flex items-center gap-1.5 bg-transparent px-3 py-1.5 leading-tight;
-    border-color: var(--k-game-border);
-  }
+    .board-editor__group + .board-editor__group {
+        @apply mt-2;
+    }
+
+    .board-editor__row {
+        @apply grid grid-cols-8 gap-1;
+    }
+
+    /* White pieces sit on the board's dark tile colour, Black ones on the light one: both read well. */
+    .board-editor__tool {
+        @apply cursor-pointer rounded-[4px] border-2 border-transparent bg-tile-dark p-[0.2rem] leading-[0] text-inherit;
+    }
+
+    .board-editor__tool svg {
+        @apply block w-full h-auto;
+    }
+
+    .board-editor__row--black > .board-editor__tool {
+        @apply bg-tile-light;
+    }
+
+    .board-editor__tool[aria-pressed="true"] {
+        @apply border-turn;
+        box-shadow: 0 0 0 2px rgb(var(--k-turn) / 0.45);
+    }
+
+    .board-editor__tool--eraser {
+        @apply inline-flex items-center gap-1.5 bg-transparent px-3 py-1.5 leading-tight;
+        border-color: var(--k-game-border);
+    }
 }

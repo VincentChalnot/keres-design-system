@@ -9,102 +9,102 @@
  * Tailwind names declared in tailwind.preset.js).
  */
 :root {
-  /* ══ Base colours: the ONLY definitions. Space-separated RGB triplets, so Tailwind opacity
-        (`bg-primary/20`) and plain CSS (`rgb(var(--k-primary) / .2)`) both work. Change one of
-        these and every colour derived from it below follows. ═════════════════════════════ */
-  --k-canvas: 13 17 15;         /* page background (green-tinted black) #0d110f */
-  --k-fg: 246 243 236;          /* body text (warm white)      #f6f3ec */
-  --k-soft: 226 205 152;        /* secondary text, <strong>    #e2cd98 */
-  --k-ink: 22 18 8;             /* dark icons / text on bright fills #161208 */
-  --k-primary: 196 147 74;      /* the Keres gold              #c4934a */
-  --k-secondary: 24 122 126;    /* teal                        #187a7e */
-  --k-success: 72 199 142;      /* #48c78e */
-  --k-danger: 198 40 54;        /* #c62836 */
-  --k-warning: 240 160 48;      /* #f0a030 */
-  --k-info: 62 142 208;         /* #3e8ed0 */
-  --k-turn: 31 171 163;         /* side to move (teal)         #1faba3 */
+    /* ══ Base colours: the ONLY definitions. Space-separated RGB triplets, so Tailwind opacity
+          (`bg-primary/20`) and plain CSS (`rgb(var(--k-primary) / .2)`) both work. Change one of
+          these and every colour derived from it below follows. ═════════════════════════════ */
+    --k-canvas: 13 17 15; /* page background (green-tinted black) #0d110f */
+    --k-fg: 246 243 236; /* body text (warm white)      #f6f3ec */
+    --k-soft: 226 205 152; /* secondary text, <strong>    #e2cd98 */
+    --k-ink: 22 18 8; /* dark icons / text on bright fills #161208 */
+    --k-primary: 196 147 74; /* the Keres gold              #c4934a */
+    --k-secondary: 24 122 126; /* teal                        #187a7e */
+    --k-success: 72 199 142; /* #48c78e */
+    --k-danger: 198 40 54; /* #c62836 */
+    --k-warning: 240 160 48; /* #f0a030 */
+    --k-info: 62 142 208; /* #3e8ed0 */
+    --k-turn: 31 171 163; /* side to move (teal)         #1faba3 */
 
-  /* ── Board (SVG tiles + pieces) and game-only colours: independent of the theme ─────── */
-  --k-tile-dark: 81 58 39;      /* #513a27 */
-  --k-tile-light: 221 189 144;  /* #ddbd90 */
-  --k-tile-stroke: 41 26 17;    /* #291a11 */
-  --k-piece-light: 221 204 173; /* #ddccad */
-  --k-piece-dark: 29 22 16;     /* #1d1610 */
-  --k-track: 58 53 45;          /* switch track (off)          #3a352d */
-  --k-eval-black: 38 36 33;     /* evaluation bar, black side  #262421 */
-  --k-eval-white: 244 244 244;  /* evaluation bar, white side  #f4f4f4 */
-  --k-danger-strong: 226 87 76; /* destructive game actions    #e2574c */
+    /* ── Board (SVG tiles + pieces) and game-only colours: independent of the theme ─────── */
+    --k-tile-dark: 81 58 39; /* #513a27 */
+    --k-tile-light: 221 189 144; /* #ddbd90 */
+    --k-tile-stroke: 41 26 17; /* #291a11 */
+    --k-piece-light: 221 204 173; /* #ddccad */
+    --k-piece-dark: 29 22 16; /* #1d1610 */
+    --k-track: 58 53 45; /* switch track (off)          #3a352d */
+    --k-eval-black: 38 36 33; /* evaluation bar, black side  #262421 */
+    --k-eval-white: 244 244 244; /* evaluation bar, white side  #f4f4f4 */
+    --k-danger-strong: 226 87 76; /* destructive game actions    #e2574c */
 
-  /* ══ Derived colours: full CSS colours (NOT triplets) computed from the base ones.
-        In CSS use them as `var(--k-primary-hi)`; with an alpha: `rgb(from var(--k-primary-hi) r g b / .4)`.
-        Tailwind names (`bg-primary-hi/30`) handle both. Needs relative colour syntax + color-mix
-        (Chrome/Edge 119, Safari 16.4, Firefox 128). Offsets were fitted to the former static palette
-        (max difference ΔE(oklab)×100 ≤ 1, most < 0.25). ═════════════════════════════════════════ */
+    /* ══ Derived colours: full CSS colours (NOT triplets) computed from the base ones.
+          In CSS use them as `var(--k-primary-hi)`; with an alpha: `rgb(from var(--k-primary-hi) r g b / .4)`.
+          Tailwind names (`bg-primary-hi/30`) handle both. Needs relative colour syntax + color-mix
+          (Chrome/Edge 119, Safari 16.4, Firefox 128). Offsets were fitted to the former static palette
+          (max difference ΔE(oklab)×100 ≤ 1, most < 0.25). ═════════════════════════════════════════ */
 
-  /* Shades of a hue: oklch lightness offset, chroma factor, hue offset (degrees). */
-  --k-primary-hover: oklch(from rgb(var(--k-primary)) calc(l + 0.045) calc(c * 0.88) calc(h + 1));
-  --k-primary-hi: oklch(from rgb(var(--k-primary)) calc(l + 0.115) calc(c * 0.64) calc(h + 2));    /* light on the top / left edges */
-  --k-primary-lo: oklch(from rgb(var(--k-primary)) calc(l - 0.16) calc(c * 0.8) h);                /* shade on the bottom / right edges */
-  --k-secondary-hover: oklch(from rgb(var(--k-secondary)) calc(l + 0.08) calc(c * 1.14) calc(h - 2));
-  --k-secondary-hi: oklch(from rgb(var(--k-secondary)) calc(l + 0.215) calc(c * 1.2) calc(h - 9));
-  --k-secondary-lo: oklch(from rgb(var(--k-secondary)) calc(l - 0.14) calc(c * 0.74) calc(h + 5));
-  --k-danger-text: oklch(from rgb(var(--k-danger)) calc(l + 0.2) calc(c * 0.72) calc(h - 8));      /* readable red on dark surfaces */
-  --k-danger-deep: oklch(from rgb(var(--k-danger)) calc(l - 0.115) calc(c * 0.78) calc(h + 4));    /* fill of destructive game actions */
-  --k-danger-ink: oklch(from rgb(var(--k-danger)) calc(l + 0.355) calc(c * 0.2) calc(h + 7));      /* …their text */
-  --k-turn-text: oklch(from rgb(var(--k-turn)) calc(l + 0.135) calc(c * 1.06) calc(h + 1));        /* readable teal on dark panels */
+    /* Shades of a hue: oklch lightness offset, chroma factor, hue offset (degrees). */
+    --k-primary-hover: oklch(from rgb(var(--k-primary)) calc(l + 0.045) calc(c * 0.88) calc(h + 1));
+    --k-primary-hi: oklch(from rgb(var(--k-primary)) calc(l + 0.115) calc(c * 0.64) calc(h + 2)); /* light on the top / left edges */
+    --k-primary-lo: oklch(from rgb(var(--k-primary)) calc(l - 0.16) calc(c * 0.8) h); /* shade on the bottom / right edges */
+    --k-secondary-hover: oklch(from rgb(var(--k-secondary)) calc(l + 0.08) calc(c * 1.14) calc(h - 2));
+    --k-secondary-hi: oklch(from rgb(var(--k-secondary)) calc(l + 0.215) calc(c * 1.2) calc(h - 9));
+    --k-secondary-lo: oklch(from rgb(var(--k-secondary)) calc(l - 0.14) calc(c * 0.74) calc(h + 5));
+    --k-danger-text: oklch(from rgb(var(--k-danger)) calc(l + 0.2) calc(c * 0.72) calc(h - 8)); /* readable red on dark surfaces */
+    --k-danger-deep: oklch(from rgb(var(--k-danger)) calc(l - 0.115) calc(c * 0.78) calc(h + 4)); /* fill of destructive game actions */
+    --k-danger-ink: oklch(from rgb(var(--k-danger)) calc(l + 0.355) calc(c * 0.2) calc(h + 7)); /* …their text */
+    --k-turn-text: oklch(from rgb(var(--k-turn)) calc(l + 0.135) calc(c * 1.06) calc(h + 1)); /* readable teal on dark panels */
 
-  /* Surfaces: the canvas lifted towards the text colour (percentage of fg in an oklab mix). */
-  --k-panel: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 2.7%);          /* player cards, moves panel */
-  --k-sunken: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 3.8%);         /* wells, dropdown panels */
-  --k-inactive: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 5.5%);       /* idle clock / muted banner */
-  --k-surface: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 7%);          /* cards, modals, inputs */
-  --k-popover: var(--k-surface);                                                        /* floating menus */
-  --k-surface-hover: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 14.1%); /* hovered rows / ghost hover */
-  --k-edge: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 18.8%);          /* hairlines inside surfaces */
+    /* Surfaces: the canvas lifted towards the text colour (percentage of fg in an oklab mix). */
+    --k-panel: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 2.7%); /* player cards, moves panel */
+    --k-sunken: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 3.8%); /* wells, dropdown panels */
+    --k-inactive: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 5.5%); /* idle clock / muted banner */
+    --k-surface: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 7%); /* cards, modals, inputs */
+    --k-popover: var(--k-surface); /* floating menus */
+    --k-surface-hover: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 14.1%); /* hovered rows / ghost hover */
+    --k-edge: color-mix(in oklab, rgb(var(--k-canvas)), rgb(var(--k-fg)) 18.8%); /* hairlines inside surfaces */
 
-  /* Text: the body colour faded into the canvas. */
-  --k-muted: color-mix(in oklab, rgb(var(--k-fg)), rgb(var(--k-canvas)) 31.4%);         /* helper / meta text */
-  --k-subtle: color-mix(in oklab, rgb(var(--k-fg)), rgb(var(--k-canvas)) 49.9%);        /* hints, placeholders */
+    /* Text: the body colour faded into the canvas. */
+    --k-muted: color-mix(in oklab, rgb(var(--k-fg)), rgb(var(--k-canvas)) 31.4%); /* helper / meta text */
+    --k-subtle: color-mix(in oklab, rgb(var(--k-fg)), rgb(var(--k-canvas)) 49.9%); /* hints, placeholders */
 
-  /* Gold-derived: the brand colour sunk into the canvas. */
-  --k-brand: color-mix(in oklab, rgb(var(--k-primary)), rgb(var(--k-canvas)) 67.9%);    /* dark-gold fills (callouts, tags) */
-  --k-line: color-mix(in oklab, rgb(var(--k-primary)), rgb(var(--k-canvas)) 40.3%);     /* main borders */
-  --k-line-hi: oklch(from var(--k-line) calc(l + 0.135) calc(c * 1.28) calc(h + 8));    /* …lit side (top / left) */
-  --k-line-lo: oklch(from var(--k-line) calc(l - 0.125) calc(c * 0.68) calc(h + 8));    /* …shaded side (bottom / right) */
+    /* Gold-derived: the brand colour sunk into the canvas. */
+    --k-brand: color-mix(in oklab, rgb(var(--k-primary)), rgb(var(--k-canvas)) 67.9%); /* dark-gold fills (callouts, tags) */
+    --k-line: color-mix(in oklab, rgb(var(--k-primary)), rgb(var(--k-canvas)) 40.3%); /* main borders */
+    --k-line-hi: oklch(from var(--k-line) calc(l + 0.135) calc(c * 1.28) calc(h + 8)); /* …lit side (top / left) */
+    --k-line-lo: oklch(from var(--k-line) calc(l - 0.125) calc(c * 0.68) calc(h + 8)); /* …shaded side (bottom / right) */
 
-  --k-game-border: rgb(var(--k-soft) / 0.16);  /* hairline around game panels */
-  --k-radius-game: 6px;         /* the game screen uses squarer corners */
+    --k-game-border: rgb(var(--k-soft) / 0.16); /* hairline around game panels */
+    --k-radius-game: 6px; /* the game screen uses squarer corners */
 
-  /* ── Typography ────────────────────────────────────────────────────── */
-  --k-font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;  /* body + UI: screen-optimised serif */
-  --k-font-sans: var(--k-font-body);       /* legacy alias */
-  --k-font-display: "Carolingia", serif;   /* the LOGO only — always uppercase */
-  --k-font-title: "RomanSerif", serif;     /* headings */
-  --k-font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    /* ── Typography ────────────────────────────────────────────────────── */
+    --k-font-body: "Source Serif 4", "Georgia", "Times New Roman", serif; /* body + UI: screen-optimised serif */
+    --k-font-sans: var(--k-font-body); /* legacy alias */
+    --k-font-display: "Carolingia", serif; /* the LOGO only — always uppercase */
+    --k-font-title: "RomanSerif", serif; /* headings */
+    --k-font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
-  /* ── Shape & elevation ─────────────────────────────────────────────── */
-  /* Every bordered shape is bevelled (corner-shape: bevel); these are the
-     cut sizes. Browsers without corner-shape fall back to small round corners. */
-  --k-radius-sm: 0.125rem;      /* badges, small buttons, toggles: barely visible cut */
-  --k-radius-md: 0.3125rem;     /* buttons, inputs, alerts */
-  --k-radius-lg: 0.5rem;        /* panels, modals */
-  --k-shadow-raised: 0 8px 24px rgb(0 0 0 / 0.6);
-  --k-shadow-modal: 0 0 0 1px rgb(0 0 0 / 0.7), 0 0 40px 6px rgb(0 0 0 / 0.65), 0 28px 70px rgb(0 0 0 / 0.7), 0 0 90px rgb(var(--k-primary) / 0.07);
-  --k-shadow-cta: 1px 1px 12px #000;
+    /* ── Shape & elevation ─────────────────────────────────────────────── */
+    /* Every bordered shape is bevelled (corner-shape: bevel); these are the
+       cut sizes. Browsers without corner-shape fall back to small round corners. */
+    --k-radius-md: 0.25rem; /* buttons, inputs, alerts — the ONLY radius to set; sm and lg derive from it */
+    --k-radius-sm: calc(var(--k-radius-md) * 0.5); /* badges, small buttons, toggles: barely visible cut */
+    --k-radius-lg: calc(var(--k-radius-md) * 2); /* panels, modals */
+    --k-shadow-raised: 0 8px 24px rgb(0 0 0 / 0.6);
+    --k-shadow-modal: 0 0 0 1px rgb(0 0 0 / 0.7), 0 0 40px 6px rgb(0 0 0 / 0.65), 0 28px 70px rgb(0 0 0 / 0.7), 0 0 90px rgb(var(--k-primary) / 0.07);
+    --k-shadow-cta: 1px 1px 12px #000;
 
-  /* ── Layout ────────────────────────────────────────────────────────── */
-  --k-navbar-h: 4rem;           /* the board is sized to the space left under it */
-  --k-btn-min: 13rem;           /* default button width */
-  --k-container: 1152px;
-  --k-container-narrow: 900px;
-  --k-hero-measure: 60ch;
+    /* ── Layout ────────────────────────────────────────────────────────── */
+    --k-navbar-h: 4rem; /* the board is sized to the space left under it */
+    --k-btn-min: 13rem; /* default button width */
+    --k-container: 1152px;
+    --k-container-narrow: 900px;
+    --k-hero-measure: 60ch;
 }
 
 @media print {
-  :root {
-    --k-canvas: 255 255 255;
-    --k-fg: 34 34 34;
-    --k-primary: 179 107 0;
-    --k-soft: 122 92 46;
-  }
+    :root {
+        --k-canvas: 255 255 255;
+        --k-fg: 34 34 34;
+        --k-primary: 179 107 0;
+        --k-soft: 122 92 46;
+    }
 }

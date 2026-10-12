@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 - 2026-10-12
+- **Buttons**: icons always take the text colour; a thin bar separates icon and label (`--btn-gap` on each side of it, none on icon-only buttons);
+  the label is nudged down (`--btn-nudge`, in `em`) so capitals look vertically centred.
+- **Tokens**: only `--k-radius-md` is defined; `--k-radius-sm` (½×) and `--k-radius-lg` (2×) are derived from it.
+- Dev: `npm run styleguide` rebuilds `styleguide/keres.css` on every change in `src/`. Sources reformatted (4-space indent); multi-value `transition-[…]` utilities replaced by plain `transition:` declarations.
+
 ## 0.5.0 - 2026-10-12
 - **Tokens (breaking for direct CSS users)**: `--k-primary-hover|hi|lo`, `--k-secondary-hover|hi|lo`, `--k-line`, `--k-line-hi|lo`,
   `--k-surface`, `--k-surface-hover`, `--k-sunken`, `--k-inactive`, `--k-panel`, `--k-popover`, `--k-edge`, `--k-muted`,

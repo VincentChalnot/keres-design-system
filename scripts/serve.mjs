@@ -2,7 +2,16 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve } from 'node:path';
+import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
+// Rebuild styleguide/keres.css whenever src/ (tokens.css included) changes, so edits show up on reload.
+const tailwind = spawn(process.execPath, [
+  fileURLToPath(new URL('../node_modules/tailwindcss/lib/cli.js', import.meta.url)),
+  '-c', 'tailwind.config.js', '-i', 'src/keres.css', '-o', 'styleguide/keres.css', '--watch=always',
+], { stdio: 'inherit', cwd: fileURLToPath(new URL('..', import.meta.url)) });
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => { tailwind.kill(); process.exit(); });
+process.on('exit', () => tailwind.kill());
 const [root = 'styleguide', port = '4173'] = process.argv.slice(2);
 const base = resolve(root);
 const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.ttf': 'font/ttf', '.webp': 'image/webp', '.png': 'image/png' };

@@ -2,42 +2,110 @@
  * Feedback: alerts (flash messages), callouts (rules page), modals, status banner, empty state.
  */
 @layer components {
-  /* ── Alert (Bulma .notification) ─ <div class="alert alert--success"> ─────────── */
-  .alert {
-    @apply edged mb-4 rounded-md bevel border px-4 py-3 text-base;
-    @apply bg-surface-hover border-edge text-fg;
-  }
-  .alert a { @apply underline font-medium; }
-  .alert--success { @apply bg-success/10 text-success; --edge-hi: rgb(var(--k-success)); --edge-lo: rgb(var(--k-success)); --edge-opacity: 0.45; }
-  .alert--danger { @apply bg-danger/10 text-danger-text; --edge-hi: var(--k-danger-text); --edge-lo: rgb(var(--k-danger)); --edge-opacity: 0.55; }
-  .alert--info { @apply bg-info/10 text-info; --edge-hi: rgb(var(--k-info)); --edge-lo: rgb(var(--k-info)); --edge-opacity: 0.45; }
-  .alert--warning { @apply bg-warning/10 text-warning; --edge-hi: rgb(var(--k-warning)); --edge-lo: rgb(var(--k-warning)); --edge-opacity: 0.45; }
-  .alert--brand { @apply bg-brand/40 text-fg; }
-  .alert__close { @apply absolute top-2.5 right-2.5; }
+    /* ── Alert (Bulma .notification) ─ <div class="alert alert--success"> ─────────── */
+    .alert {
+        @apply edged mb-4 rounded-md bevel border px-4 py-3 text-base;
+        @apply bg-surface-hover border-edge text-fg;
+    }
 
-  /* ── Callout (rules page "warning" / "special-note") ─────────────────── */
-  .callout { @apply bevel my-5 rounded-md border-l-4 border-fg bg-brand p-4 text-fg; }
-  .callout--warning { @apply border-primary; }
+    .alert a {
+        @apply underline font-medium;
+    }
 
-  /* ── Modal ─ toggle with .is-active ───────────────────────────────────
-   <div class="modal [is-active]"><div class="modal__backdrop"></div>
-     <div class="modal__card"><header class="modal__head">…</header>
-       <section class="modal__body">…</section><footer class="modal__foot">…</footer></div></div> */
-  .modal { @apply hidden fixed inset-0 z-modal items-center justify-center p-4; }
-  .modal.is-active { @apply flex; }
-  .modal__backdrop { @apply absolute inset-0 bg-black/75 backdrop-blur-[3px]; }
-  .modal__card {
-    @apply relative flex flex-col w-full max-w-[40rem] max-h-[calc(100dvh-2rem)];
-    overflow: clip; overflow-clip-margin: 1px;
-    @apply edged rounded-lg bevel border bg-surface shadow-modal animate-pop;
-  }
-  .modal__head { @apply flex items-center justify-between gap-4 px-5 py-4 border-b border-edge; }
-  .modal__title { @apply font-title text-xl m-0 text-fg; }
-  .modal__body { @apply flex-1 overflow-y-auto p-5; }
-  .modal__body p:last-child { @apply mb-0; }
-  .modal__foot { @apply flex flex-wrap items-center gap-2 px-5 py-4 border-t border-edge; }
+    .alert--success {
+        @apply bg-success/10 text-success;
+        --edge-hi: rgb(var(--k-success));
+        --edge-lo: rgb(var(--k-success));
+        --edge-opacity: 0.45;
+    }
 
-  /* ── Empty state & spinner ───────────────────────────────────────────── */
-  .empty { @apply py-6 text-center text-muted; }
-  .spinner { @apply inline-block w-5 h-5 rounded-full border-2 border-primary border-r-transparent animate-spin; }
+    .alert--danger {
+        @apply bg-danger/10 text-danger-text;
+        --edge-hi: var(--k-danger-text);
+        --edge-lo: rgb(var(--k-danger));
+        --edge-opacity: 0.55;
+    }
+
+    .alert--info {
+        @apply bg-info/10 text-info;
+        --edge-hi: rgb(var(--k-info));
+        --edge-lo: rgb(var(--k-info));
+        --edge-opacity: 0.45;
+    }
+
+    .alert--warning {
+        @apply bg-warning/10 text-warning;
+        --edge-hi: rgb(var(--k-warning));
+        --edge-lo: rgb(var(--k-warning));
+        --edge-opacity: 0.45;
+    }
+
+    .alert--brand {
+        @apply bg-brand/40 text-fg;
+    }
+
+    .alert__close {
+        @apply absolute top-2.5 right-2.5;
+    }
+
+    /* ── Callout (rules page "warning" / "special-note") ─────────────────── */
+    .callout {
+        @apply bevel my-5 rounded-md border-l-4 border-fg bg-brand p-4 text-fg;
+    }
+
+    .callout--warning {
+        @apply border-primary;
+    }
+
+    /* ── Modal ─ toggle with .is-active ───────────────────────────────────
+     <div class="modal [is-active]"><div class="modal__backdrop"></div>
+       <div class="modal__card"><header class="modal__head">…</header>
+         <section class="modal__body">…</section><footer class="modal__foot">…</footer></div></div> */
+    .modal {
+        @apply hidden fixed inset-0 z-modal items-center justify-center p-4;
+    }
+
+    .modal.is-active {
+        @apply flex;
+    }
+
+    .modal__backdrop {
+        @apply absolute inset-0 bg-black/75 backdrop-blur-[3px];
+    }
+
+    .modal__card {
+        @apply relative flex flex-col w-full max-w-[40rem] max-h-[calc(100dvh-2rem)];
+        overflow: clip;
+        overflow-clip-margin: 1px;
+        @apply edged rounded-lg bevel border bg-surface shadow-modal animate-pop;
+    }
+
+    .modal__head {
+        @apply flex items-center justify-between gap-4 px-5 py-4 border-b border-edge;
+    }
+
+    .modal__title {
+        @apply font-title text-xl m-0 text-fg;
+    }
+
+    .modal__body {
+        @apply flex-1 overflow-y-auto p-5;
+    }
+
+    .modal__body p:last-child {
+        @apply mb-0;
+    }
+
+    .modal__foot {
+        @apply flex flex-wrap items-center gap-2 px-5 py-4 border-t border-edge;
+    }
+
+    /* ── Empty state & spinner ───────────────────────────────────────────── */
+    .empty {
+        @apply py-6 text-center text-muted;
+    }
+
+    .spinner {
+        @apply inline-block w-5 h-5 rounded-full border-2 border-primary border-r-transparent animate-spin;
+    }
 }
