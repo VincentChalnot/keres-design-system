@@ -6,6 +6,7 @@
  *       .player-card ×2       avatar, name, rating, clock, material   (areas top / bottom)
  *       .game-info            status banner + option badges          (area info)
  *       .game-board           board (+ eval bar)                     (area board)
+ *       .eval-graph           evaluation curve, full width           (area graph, only while shown)
  *       .game-panel           moves, actions, piece info             (area panel)
  *     .game-board__brand      maker's mark under the board (wide only)
  *     .feedback-banner
@@ -36,6 +37,8 @@
         --panel-w: 20rem;
         --gap: 1rem;
         --eval-bar-extra: 0px;
+        /* What the evaluation graph adds to the wide arrangement's fixed height (see .eval-graph). */
+        --graph-extra: 0px;
         /* Height the arrangement needs besides the board: two slim player rows on phones, no brand line. */
         --board-reserved-h: 8rem;
         /* Width left for the board (+ evaluation bar) once the side columns are placed. */
@@ -58,6 +61,13 @@
         --eval-bar-extra: 2.25rem;
     }
 
+    /* The evaluation graph is a full-width last row of every arrangement (right under the bottom card when stacked);
+       the areas only mention it while it is shown, so no empty row (and its gap) is left otherwise. */
+    .game-layout:has(.eval-graph:not([hidden])) {
+        --graph-extra: calc(6rem + 0.6rem);
+        grid-template-areas: "top" "board" "bottom" "graph" "info" "actions" "pieces" "moves";
+    }
+
     /* mid: board + moves panel; player rows above/below the board, status over the panel */
     @container game (min-width: 68rem) {
         .game-layout {
@@ -66,6 +76,11 @@
             grid-template-columns: var(--board-w) var(--panel-w);
             grid-template-areas: "top info" "board panel" "bottom panel";
             grid-template-rows: auto 1fr auto;
+        }
+
+        .game-layout:has(.eval-graph:not([hidden])) {
+            grid-template-areas: "top info" "board panel" "bottom panel" "graph graph";
+            grid-template-rows: auto 1fr auto auto;
         }
     }
     /* wide: cards | board | panel */
@@ -77,7 +92,12 @@
             grid-template-areas: "top board moves" "info board actions" "bottom board pieces";
             grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
             /* Exactly the board's height, so cards and panel blocks share it instead of stretching the rows. */
-            height: calc((var(--board-w) - var(--eval-bar-extra)) / var(--board-aspect));
+            height: calc((var(--board-w) - var(--eval-bar-extra)) / var(--board-aspect) + var(--graph-extra));
+        }
+
+        .game-layout:has(.eval-graph:not([hidden])) {
+            grid-template-areas: "top board moves" "info board actions" "bottom board pieces" "graph graph graph";
+            grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr) 6rem;
         }
     }
 
@@ -214,6 +234,7 @@
     .eval-bar {
         @apply relative shrink-0 w-7 overflow-hidden rounded-sm border border-[rgb(128_128_128/0.6)];
         background: rgb(var(--k-eval-black));
+        color-scheme: only light; /* fixed black/white colours: browsers' forced dark modes must not invert them */
     }
 
     .eval-bar[hidden] {
@@ -259,6 +280,47 @@
 
     .move-eval {
         @apply ml-1.5 text-[0.7rem] opacity-65;
+    }
+
+    /* ── Evaluation graph: the verdict after every ply, White's share painted white (platform: views/EvalGraph.ts) ── */
+    .eval-graph {
+        grid-area: graph;
+        @apply h-24 min-w-0 cursor-pointer overflow-hidden rounded-game border border-[rgb(128_128_128/0.6)];
+        background: rgb(var(--k-eval-black));
+        color-scheme: only light;
+    }
+
+    .eval-graph[hidden] {
+        display: none;
+    }
+
+    .eval-graph svg {
+        @apply block h-full w-full;
+    }
+
+    .eval-graph__area {
+        fill: rgb(var(--k-eval-white));
+    }
+
+    .eval-graph__mid {
+        stroke: rgb(128 128 128 / 0.55);
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+    }
+
+    .eval-graph__cursor {
+        stroke: rgb(var(--k-turn));
+        stroke-width: 2;
+        vector-effect: non-scaling-stroke;
+    }
+
+    /* The move's effect on the evaluation for the side that played it (platform: app.ts appendMoveEvaluation) */
+    .move-eval.is-loss {
+        @apply text-warning opacity-100;
+    }
+
+    .move-eval.is-blunder {
+        @apply text-danger-text opacity-100 font-bold;
     }
 
     /* ── Player card: avatar, name, rating, clock, material ───────────────── */
@@ -458,6 +520,7 @@
     }
     .material-piece {
         @apply block h-auto overflow-visible max-w-[2.75rem];
+        color-scheme: only light;
         flex: 0 0 4.5em;
     }
 

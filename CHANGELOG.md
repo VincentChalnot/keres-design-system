@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0 - 2026-10-12
+- **Game**: `.move-eval.is-loss` / `.is-blunder` (what a move did to the evaluation, for the side that played it); `.eval-graph` and its parts
+  (`__area`, `__mid`, `__cursor`), a full-width `graph` area under the board in the stacked, mid and wide arrangements (only while the graph is shown;
+  the wide arrangement's fixed height grows by `--graph-extra`).
+- **Game**: `.eval-bar` and `.material-piece` opt out of the browsers' forced dark modes (`color-scheme: only light`): Brave/Android inverted them.
+- **Tutorial**: new `tutorial.css` (`.tutorial-slide`, `.tutorial-slide__figure`, `.tutorial-progress`, `.tutorial-board`, `.tutorial-caption`, `.tutorial-message`).
+
 ## 0.6.0 - 2026-10-12
 - **Buttons**: icons always take the text colour; a thin bar separates icon and label (`--btn-gap` on each side of it, none on icon-only buttons);
   the label is nudged down (`--btn-nudge`, in `em`) so capitals look vertically centred.

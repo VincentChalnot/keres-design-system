@@ -1,0 +1,45 @@
+/*
+ * Tutorial — the platform's /tutorial page (templates/actions/tutorial.html.twig,
+ * assets/typescript/src/tutorial.ts): static slides, then a guided problem played on the game's own board.
+ *   .tutorial-slide          one slide: figure + caption, shown one at a time (the others carry [hidden])
+ *   .tutorial-slide__figure  the exported board image, as wide as the card allows
+ *   .tutorial-progress       "3 / 7" and the dots
+ *   .tutorial-board          the live board of the problem: as wide as it can be without exceeding the viewport
+ *                            height (the <svg> keeps the viewBox aspect ratio, --board-aspect, published by
+ *                            SVGBoardView on this element)
+ *   .tutorial-caption        the sentence of the current step, above the board
+ *   .tutorial-message        the "try again" line, under the board
+ */
+@layer components {
+    .tutorial-slide {
+        @apply flex flex-col items-center gap-4 text-center;
+    }
+
+    .tutorial-slide__figure {
+        @apply block h-auto w-full max-w-[44rem] rounded-md;
+    }
+
+    .tutorial-progress {
+        @apply mb-2 text-center text-sm text-muted;
+    }
+
+    .tutorial-board {
+        --board-aspect: 1.2252;
+        --board-min-width: 320px;
+        --board-max-height: calc(100dvh - var(--k-navbar-h) - 9rem);
+        @apply mx-auto;
+        width: min(100%, max(var(--board-min-width), calc(var(--board-max-height) * var(--board-aspect))));
+    }
+
+    .tutorial-board svg {
+        @apply block h-auto w-full;
+    }
+
+    .tutorial-caption {
+        @apply mb-3 text-center font-title text-xl text-fg;
+    }
+
+    .tutorial-message {
+        @apply mt-3 min-h-[1.5rem] text-center text-sm text-warning;
+    }
+}
