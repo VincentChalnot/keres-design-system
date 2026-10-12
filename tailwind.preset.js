@@ -1,7 +1,7 @@
 /**
  * Keres Tailwind preset. Both the website and the platform load it:
  *
- *   presets: [require('@keres/design-system/tailwind.preset')]
+ *   presets: [require('@vchalnot/keres-design-system/tailwind.preset')]
  *
  * Every value points at a CSS variable from src/tokens.css, so changing a
  * token re-themes both apps. Do not add raw hex colours to components.
