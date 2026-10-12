@@ -1,6 +1,6 @@
 {
   "name": "@vchalnot/keres-design-system",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Shared Tailwind design system for the Keres website (Hugo) and platform (Symfony/Vite)",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
@@ -53,7 +53,6 @@
     "tailwindcss": "^3.4.17"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   }
 }
