@@ -6,6 +6,7 @@
  *  .stat            big number + label      (Bulma .level-item with .heading + .title)
  *  .tag             pill label / badge
  *  .avatar          round image
+ *  .bot-card        content of a card: big clickable gold-ringed bot portrait | title, level + action, help
  * Grid/columns: use Tailwind (grid, grid-cols-*, gap-*) — no component needed.
  */
 @layer components {
@@ -95,6 +96,41 @@
 
     .avatar--lg {
         --avatar: 4rem;
+    }
+
+    /* ── Bot card: portrait column (click = same action as the button) | body ─── */
+    .bot-card {
+        @apply flex items-start gap-4 sm:gap-6;
+    }
+
+    .bot-card__avatar {
+        @apply shrink-0 cursor-pointer rounded-full border-0 bg-transparent p-0;
+    }
+
+    .bot-card__avatar > * {
+        @apply flex h-24 w-24 items-center justify-center rounded-full border-2 border-primary bg-surface-hover object-cover text-4xl text-primary sm:h-40 sm:w-40 sm:text-6xl;
+        transition: filter 0.2s;
+    }
+
+    .bot-card__avatar:hover > *,
+    .bot-card__avatar:focus-visible > * {
+        filter: sepia(0.4) saturate(1.5) brightness(1.08);
+    }
+
+    .bot-card__avatar:focus-visible {
+        @apply outline outline-2 outline-offset-2 outline-primary;
+    }
+
+    .bot-card__body {
+        @apply min-w-0 flex-1;
+    }
+
+    .bot-card__head {
+        @apply mb-1 flex flex-wrap items-center justify-between gap-3;
+    }
+
+    .bot-card__name {
+        @apply mb-0 font-title text-xl;
     }
 
     /* ── Tags ─────────────────────────────────────────────────────────── */

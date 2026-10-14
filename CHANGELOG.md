@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- **Surfaces**: `.bot-card` (`__avatar`, `__body`, `__head`, `__name`): a card's content as a big gold-ringed round portrait (a `<button>`/`<a>` wrapping an `<img>` or an icon, golden filter on hover/focus) beside the title, a name + action row and help text.
+
 ## 0.7.0 - 2026-10-12
 - **Game**: `.move-eval.is-loss` / `.is-blunder` (what a move did to the evaluation, for the side that played it); `.eval-graph` and its parts
   (`__area`, `__mid`, `__cursor`), a full-width `graph` area under the board in the stacked, mid and wide arrangements (only while the graph is shown;
