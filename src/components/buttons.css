@@ -103,6 +103,47 @@
         --edge-lo: var(--k-secondary-lo);
     }
 
+    /* Grunge overlay: scratch texture on ::after, blended into the fill. On every button except
+       --text, --static, and anything with .btn--no-grunge (or .is-loading: ::after is the spinner).
+       Blend/opacity depend on the fill: dark fills lighten the scratches (screen), coloured fills
+       use soft-light, the light fill multiplies. Override per button, parent or :root with
+       --btn-grunge-blend / --btn-grunge-opacity (0-1; `--btn-grunge-opacity: 0` turns it off). */
+    .btn {
+        --grunge-blend: screen;
+        --grunge-opacity: 0.1;
+    }
+
+    .btn--primary, .btn--secondary, .btn--danger, .btn--info,
+    .btn--outline[aria-pressed="true"], .btn--outline.is-active {
+        --grunge-blend: soft-light;
+        --grunge-opacity: 0.3;
+    }
+
+    .btn--light {
+        --grunge-blend: multiply;
+        --grunge-opacity: 0.15;
+    }
+
+    /* Mirror/rotate the texture per variant so neighbouring buttons don't show the same pattern
+       (primary keeps the original). Never 90°: the box isn't square. */
+    .btn--secondary { --grunge-flip: scaleX(-1); }
+    .btn--danger { --grunge-flip: scaleY(-1); }
+    .btn--info { --grunge-flip: rotate(180deg); }
+    .btn--light { --grunge-flip: scaleX(-1); }
+
+    .btn:where(:not(.btn--text, .btn--static, .btn--no-grunge, .is-loading))::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        corner-shape: inherit;
+        background: url('/images/scratches-texture-seamless-2011.webp') 0 0 / 256px;
+        mix-blend-mode: var(--btn-grunge-blend, var(--grunge-blend));
+        opacity: var(--btn-grunge-opacity, var(--grunge-opacity));
+        transform: var(--grunge-flip, none);
+    }
+
     .btn--outline { /* same as the default look; kept for existing markup */
     }
 

@@ -1,6 +1,7 @@
 # Changelog
 
-## Unreleased
+## 0.8.0 - 2026-10-14
+- **Buttons**: grunge texture overlay (`styleguide/images/scratches-texture-seamless-2011.webp`, served from `/images/`) on every `.btn` except `--text`/`--static`, drawn on `::after` with a blend mode per fill (screen on dark, soft-light on coloured, multiply on `--light`) and a per-variant flip so neighbours differ. Tune with `--btn-grunge-opacity` / `--btn-grunge-blend` / `--grunge-flip`, opt out with `.btn--no-grunge` (or `--btn-grunge-opacity: 0`). Skipped while `.is-loading`.
 - **Surfaces**: `.bot-card` (`__avatar`, `__body`, `__head`, `__name`): a card's content as a big gold-ringed round portrait (a `<button>`/`<a>` wrapping an `<img>` or an icon, golden filter on hover/focus) beside the title, a name + action row and help text.
 
 ## 0.7.0 - 2026-10-12
