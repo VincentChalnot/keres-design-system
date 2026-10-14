@@ -85,7 +85,7 @@
     /* ── Shape & elevation ─────────────────────────────────────────────── */
     /* Every bordered shape is bevelled (corner-shape: bevel); these are the
        cut sizes. Browsers without corner-shape fall back to small round corners. */
-    --k-radius-md: 0.25rem; /* buttons, inputs, alerts — the ONLY radius to set; sm and lg derive from it */
+    --k-radius-md: 0.15rem; /* buttons, inputs, alerts — the ONLY radius to set; sm and lg derive from it */
     --k-radius-sm: calc(var(--k-radius-md) * 0.5); /* badges, small buttons, toggles: barely visible cut */
     --k-radius-lg: calc(var(--k-radius-md) * 2); /* panels, modals */
     --k-shadow-raised: 0 8px 24px rgb(0 0 0 / 0.6);
