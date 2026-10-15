@@ -108,7 +108,7 @@
     }
 
     .bot-card__avatar > * {
-        @apply flex h-24 w-24 items-center justify-center rounded-full border-2 border-primary bg-surface-hover object-cover text-4xl text-primary sm:h-40 sm:w-40 sm:text-6xl;
+        @apply flex h-24 w-24 items-center justify-center rounded-full border-4 border-primary bg-surface-hover object-cover text-4xl text-primary sm:h-40 sm:w-40 sm:text-6xl;
         transition: filter 0.2s;
     }
 
